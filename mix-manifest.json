@@ -1,6 +1,6 @@
 {
-    "/js/admin.js": "/js/admin.js?id=be6a76025fe851909677",
-    "/css/admin.css": "/css/admin.css?id=ae91bda39c903b9c6c5b",
-    "/css/auth.css": "/css/auth.css?id=ae91bda39c903b9c6c5b",
-    "/js/auth.js": "/js/auth.js?id=4991cb1fb23167041a76"
+    "/js/admin.js": "/js/admin.js",
+    "/js/auth.js": "/js/auth.js",
+    "/css/admin.css": "/css/admin.css",
+    "/css/auth.css": "/css/auth.css"
 }
