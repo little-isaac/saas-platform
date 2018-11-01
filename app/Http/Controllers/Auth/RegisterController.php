@@ -61,12 +61,43 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+    
+    public function findOrCreateUser(Request $request) {
+        $is_new_user = false;
+
+        $shop_name = $request->myshopify_domain;
+
+        $conditions = [
+            ['shop_name', '=', $shop_name],
+        ];
+
+        $user = User::where($conditions)->get()->first();
+
+        if ($user) {
+            $authUser = $user;
+        } else {
+            $authUser = new User;
+            $authUser->email = $request->email;
+            $authUser->shop_name = $shop_name;
+            $authUser->name = str_replace(".myshopify.com","",$shop_name);
+            $authUser->password = Hash::make($request->password);
+            $authUser->save();
+            $is_new_user = true;
+        }
+        Auth::login($authUser, true);
+
+        Artisan::call('create:user', [
+            'user_id' => $authUser->id
         ]);
+
+        return $authUser;
     }
+//    protected function create(array $data)
+//    {
+//        return User::create([
+//            'name' => $data['name'],
+//            'email' => $data['email'],
+//            'password' => Hash::make($data['password']),
+//        ]);
+//    }
 }
