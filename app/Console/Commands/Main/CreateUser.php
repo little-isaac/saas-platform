@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Main;
 
 use Illuminate\Console\Command;
-use App\Classes\Common;
 
 class CreateUser extends Command {
 
@@ -15,8 +14,7 @@ class CreateUser extends Command {
     }
 
     public function handle() { 
-        $user_id = $this->argument("user_id");
-        Common::CreateDatabase($user_id);
+        CreateDatabase($this->argument("user_id"));
     }
 
 }
