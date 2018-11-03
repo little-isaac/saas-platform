@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, NavLink, withRouter } from "react-router-dom";
-import { ROUTES } from "../static/AuthRoute";
+import { ROUTES } from "layouts/static/AuthRoute";
 
 class Auth extends React.Component {
     render() {

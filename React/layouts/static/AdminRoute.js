@@ -1,6 +1,6 @@
 import { ADMIN_BASE_URL } from './Config';
 
-import Dashboard from '../AdminComponents/Dashboard';
+import {Dashboard, Customers, Products, AddCustomer} from 'layouts/AdminComponents/Components';
 
 import {
     Dashboard as DashboardIcon,
@@ -12,8 +12,21 @@ export const ROUTES = [
 	{
 		path: ADMIN_BASE_URL + "dashboard",
 		component: Dashboard	
-	}
+	},
+    {
+        path: ADMIN_BASE_URL + "customers",
+        component: Customers    
+    },
+    {
+        path: ADMIN_BASE_URL + "customers/new",
+        component: AddCustomer    
+    },
+    {
+        path: ADMIN_BASE_URL + "products",
+        component: Products    
+    }
 ];
+
 
 export const SIDEBAR_NAV_LINKS = [
     {

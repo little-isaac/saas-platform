@@ -1,8 +1,9 @@
 import { ADMIN_BASE_URL,BASE_URL } from './Config';
 // import { Login, Register } from '../AuthComponents';
 
-import Login from '../AuthComponents/Login';
-import Register from '../AuthComponents/Register';
+import Login from 'layouts/AuthComponents/Login/LoginContainer';
+import Register from 'layouts/AuthComponents/Register';
+import LoginPage from 'layouts/AuthComponents/LoginPage';
 
 export const ROUTES = [
 	{
@@ -16,5 +17,9 @@ export const ROUTES = [
 	{
 		path: BASE_URL + "register",
 		component: Register	
+	},
+	{
+		path: BASE_URL + "login_page",
+		component: LoginPage	
 	},
 ];

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class ReactController extends Controller {
 	protected $auth_routes = [
 		'login',
+		'login_page',
 	];
 	public function view(Request $request, $store_name, $path = null, $id = null) {
 

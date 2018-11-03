@@ -62,22 +62,18 @@ import {
 import blue from "@material-ui/core/colors/blue";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
-import Main from './Main';
+import Main from "layouts/AdminComponents/Main";
 class Dashboard extends React.Component {
   state = {
     value: 0
   };
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  handleChangeIndex = index => {
-    this.setState({ value: index });
-  };
+  
   render() {
     const { classes } = this.props;
     return (
+      <div>
       <Main header="Dashboard"/>
+      </div>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, NavLink, withRouter } from "react-router-dom";
-import { ROUTES } from "../static/AdminRoute";
+import { ROUTES } from "layouts/static/AdminRoute";
 import Navigation from 'layouts/static/Admin/Navigation';
 class Admin extends React.Component {
     render() {

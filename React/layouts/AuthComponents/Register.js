@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 
 import { Field, reduxForm, SubmissionError } from "redux-form";
 
-import { Ajax } from "../Ajax";
-import { ADMIN_BASE_URL,BASE_URL } from "../static/Config";
+import { Ajax } from "layouts/Ajax";
+import { ADMIN_BASE_URL,BASE_URL } from "layouts/static/Config";
 
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -74,8 +74,6 @@ class Register extends Component {
     }
 
     handleSubmit(values) {
-        console.log(values);
-        debugger;
         if (typeof values.name == "undefined") {
             throw new SubmissionError({
                 name: "store name is required"

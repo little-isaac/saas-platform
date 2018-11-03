@@ -3,11 +3,9 @@ import ReactDOM from "react-dom";
 
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Ajax } from "../Ajax";
-import { ADMIN_BASE_URL, BASE_URL } from "../static/Config";
-import { withStyles } from "@material-ui/core/styles";
 
-import { Field, reduxForm, SubmissionError } from "redux-form";
+
+import { Field, reduxForm } from "redux-form";
 // core components
 import {
     Icon,
@@ -46,7 +44,7 @@ import {
 
 import blue from "@material-ui/core/colors/blue";
 
-import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
+
 
 const InputField = ({ input, label, meta: { touched, error }, ...custom }) => (
     <React.Fragment>
@@ -59,54 +57,14 @@ const InputField = ({ input, label, meta: { touched, error }, ...custom }) => (
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data: [],
-            message: null,
-            password: "",
-            showPassword: false
-        };
     }
-    handleSubmit = values => {
-        console.log(values);
-        var is_error = false;
-        var error = {};
-        if (typeof values.email == "undefined") {
-            error.email = "email is required";
-            is_error =  true;
-        } 
-        if (typeof values.password == "undefined") {
-            error.password = "password is required";
-            is_error =  true;
-        }
-        if (is_error) {
-            throw new SubmissionError(error);
-            return false;
-        }
-        var data = values;
-        data._token = window.Laravel.csrfToken;
-        Ajax.call({
-            method: "POST",
-            data: data,
-            url: BASE_URL + "login.json",
-
-            success: function(result) {
-                if (result.status) {
-                    location.href = "/admin/dashboard";
-                } else {
-                }
-            }
-        });
-    };
-    handleClickShowPassword = () => {
-        this.setState(state => ({ showPassword: !state.showPassword }));
-    };
     loginDiv() {
         const { classes, handleSubmit, ...other } = this.props;
         return (
             <div>
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>
-                        <form onSubmit={handleSubmit(this.handleSubmit)}>
+                        <form onSubmit={handleSubmit(this.props.directAdminLogin)}>
                             <Card>
                                 <CardHeader color="danger">
                                     <h4 className={classes.cardTitleWhite}>
@@ -139,7 +97,7 @@ class Login extends Component {
                                                     id="password"
                                                     name="password"
                                                     type={
-                                                        this.state.showPassword
+                                                        this.props.Login.showHidePassword
                                                             ? "text"
                                                             : "password"
                                                     }
@@ -148,12 +106,10 @@ class Login extends Component {
                                                             <IconButton
                                                                 aria-label="Toggle password visibility"
                                                                 onClick={
-                                                                    this
-                                                                        .handleClickShowPassword
+                                                                    this.props.showHidePassword
                                                                 }
                                                             >
-                                                                {this.state
-                                                                    .showPassword ? (
+                                                                {this.props.Login.showHidePassword ? (
                                                                     <Visibility />
                                                                 ) : (
                                                                     <VisibilityOff />
@@ -188,4 +144,4 @@ Login = reduxForm({
     form: "LoginForm"
 })(Login);
 
-export default withStyles(dashboardStyle)(Login);
+export default Login;
