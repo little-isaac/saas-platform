@@ -13,10 +13,9 @@ class RegisterController extends Controller {
 	public function findOrCreateUser(Request $request) {
 		$is_new_user = false;
 
-		$name = $request->name;
-
 		$conditions = [
-			['name', '=', $name],
+			'name' => $request->store_name,
+			'email' => $request->email,
 		];
 
 		$user = User::where($conditions)->get()->first();
@@ -27,14 +26,14 @@ class RegisterController extends Controller {
 			return [
 				'status' => false,
 				'user' => $authUser,
-				'message' => 'store allready exists',
+				'error' => 1,
 			];
 
 		} else {
 			$authUser = new User;
 			$authUser->email = $request->email;
-			$authUser->name = $name;
-			$authUser->shop_name = $name . ".saas.com";
+			$authUser->name = $request->store_name;
+			$authUser->shop_name = $request->store_name . ".saas-platform.com";
 			$authUser->password = Hash::make($request->password);
 			$authUser->save();
 			$is_new_user = true;

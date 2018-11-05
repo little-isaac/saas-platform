@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
-
 import { Field, reduxForm } from "redux-form";
 // core components
 import {
@@ -43,8 +42,6 @@ import {
 } from "@material-ui/icons";
 
 import blue from "@material-ui/core/colors/blue";
-
-
 
 const InputField = ({ input, label, meta: { touched, error }, ...custom }) => (
     <React.Fragment>
