@@ -3,9 +3,7 @@ import ReactDOM from "react-dom";
 import ButtonLink from "layouts/static/ButtonLink";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-
-import { withStyles } from "@material-ui/core/styles";
-
+import { NavLink as ReactNavLink } from "react-router-dom";
 // core components
 import {
   Icon,
@@ -32,7 +30,6 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-import Table from "components/Table/Table.jsx";
 import Tasks from "components/Tasks/Tasks.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
 import Danger from "components/Typography/Danger.jsx";
@@ -59,13 +56,25 @@ import {
   Cloud
 } from "@material-ui/icons";
 
-import blue from "@material-ui/core/colors/blue";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
 
+import blue from "@material-ui/core/colors/blue";
+import withStyles from "@material-ui/core/styles/withStyles";
+import tableStyle from "assets/jss/material-dashboard-react/components/tableStyle.jsx";
 import Main from "layouts/AdminComponents/Main";
 
 class Customers extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    debugger;
+    const data = this.props.getCustomers();
   }
 
   render() {
@@ -74,13 +83,49 @@ class Customers extends React.Component {
       <div>
         <h3>Customers</h3>
         <ButtonLink color="primary" to="customers/new" label="Add customer" />
+        <div className={classes.tableResponsive}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                {this.props.Customers.CustomersTableHead.map((prop, key) => {
+                  return <TableCell key={key}>{prop}</TableCell>;
+                })}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.props.Customers.CustomersTableData.data.map(
+                (customer, key) => {
+                  return (
+                    <TableRow key={key}>
+                      <TableCell>{customer["first_name"]}</TableCell>
+                      <TableCell>{customer["last_name"]}</TableCell>
+                      <TableCell>{customer["email"]}</TableCell>
+                      <TableCell>
+                        <ButtonLink
+                          color="primary"
+                          to={"customers/" + customer["id"]}
+                          label="Edit"
+                        />
+                        <Button color="danger" onClick={() => this.props.deleteCustomer(customer["id"])}>Delete</Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     );
   }
 }
 
-Customers.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+export default withStyles(tableStyle)(Customers);
+// export default Customers;
 
-export default withStyles(dashboardStyle)(Customers);
+// {Object.keys(customer).map(customer_key => {
+//                         return
+//                         <TableCell key={customer_key}>
+//                         {customer[customer_key]}
+//                         </TableCell>;
+//                       })}

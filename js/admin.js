@@ -15635,7 +15635,7 @@ CustomTable.propTypes = {
   tableData: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.arrayOf(__WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string))
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_2__material_ui_core_styles_withStyles___default()(__WEBPACK_IMPORTED_MODULE_8__assets_jss_material_dashboard_react_components_tableStyle_jsx__["a" /* default */])(CustomTable));
+/* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_2__material_ui_core_styles_withStyles___default()(__WEBPACK_IMPORTED_MODULE_8__assets_jss_material_dashboard_react_components_tableStyle_jsx__["default"])(CustomTable));
 
 /***/ }),
 /* 193 */
@@ -56205,9 +56205,9 @@ var _Dashboard = __webpack_require__(1852);
 
 var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
-var _Customers = __webpack_require__(1853);
+var _CustomersContainer = __webpack_require__(1865);
 
-var _Customers2 = _interopRequireDefault(_Customers);
+var _CustomersContainer2 = _interopRequireDefault(_CustomersContainer);
 
 var _CrudCustomerContainer = __webpack_require__(1858);
 
@@ -56222,7 +56222,7 @@ function _interopRequireDefault(obj) {
 }
 
 var Dashboard = exports.Dashboard = _Dashboard2.default;
-var Customers = exports.Customers = _Customers2.default;
+var Customers = exports.Customers = _CustomersContainer2.default;
 var CrudCustomer = exports.CrudCustomer = _CrudCustomerContainer2.default;
 var Products = exports.Products = _Products2.default;
 
@@ -89283,6 +89283,7 @@ var cardFooterStyle = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__material_dashboard_react_jsx__ = __webpack_require__(41);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -89337,7 +89338,7 @@ var tableStyle = function tableStyle(theme) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (tableStyle);
+/* harmony default export */ __webpack_exports__["default"] = (tableStyle);
 
 /***/ }),
 /* 863 */
@@ -113426,7 +113427,7 @@ var _classnames = __webpack_require__(8);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _styles = __webpack_require__(64);
+var _reactRouterDom = __webpack_require__(62);
 
 var _core = __webpack_require__(175);
 
@@ -113466,10 +113467,6 @@ var _CardFooter = __webpack_require__(191);
 
 var _CardFooter2 = _interopRequireDefault(_CardFooter);
 
-var _Table = __webpack_require__(192);
-
-var _Table2 = _interopRequireDefault(_Table);
-
 var _Tasks = __webpack_require__(193);
 
 var _Tasks2 = _interopRequireDefault(_Tasks);
@@ -113486,9 +113483,37 @@ var _general = __webpack_require__(196);
 
 var _icons = __webpack_require__(110);
 
+var _Table = __webpack_require__(442);
+
+var _Table2 = _interopRequireDefault(_Table);
+
+var _TableHead = __webpack_require__(510);
+
+var _TableHead2 = _interopRequireDefault(_TableHead);
+
+var _TableRow = __webpack_require__(445);
+
+var _TableRow2 = _interopRequireDefault(_TableRow);
+
+var _TableBody = __webpack_require__(443);
+
+var _TableBody2 = _interopRequireDefault(_TableBody);
+
+var _TableCell = __webpack_require__(181);
+
+var _TableCell2 = _interopRequireDefault(_TableCell);
+
 var _blue = __webpack_require__(164);
 
 var _blue2 = _interopRequireDefault(_blue);
+
+var _withStyles = __webpack_require__(7);
+
+var _withStyles2 = _interopRequireDefault(_withStyles);
+
+var _tableStyle = __webpack_require__(862);
+
+var _tableStyle2 = _interopRequireDefault(_tableStyle);
 
 var _Main = __webpack_require__(198);
 
@@ -113521,7 +113546,6 @@ function _inherits(subClass, superClass) {
     throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
   }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 }
-
 // core components
 
 
@@ -113538,24 +113562,46 @@ var Customers = function (_React$Component) {
   }
 
   _createClass(Customers, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      debugger;
+      var data = this.props.getCustomers();
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _props = this.props,
           classes = _props.classes,
           other = _objectWithoutProperties(_props, ["classes"]);
 
-      return _react2.default.createElement("div", null, _react2.default.createElement("h3", null, "Customers"), _react2.default.createElement(_ButtonLink2.default, { color: "primary", to: "customers/new", label: "Add customer" }));
+      return _react2.default.createElement("div", null, _react2.default.createElement("h3", null, "Customers"), _react2.default.createElement(_ButtonLink2.default, { color: "primary", to: "customers/new", label: "Add customer" }), _react2.default.createElement("div", { className: classes.tableResponsive }, _react2.default.createElement(_Table2.default, { className: classes.table }, _react2.default.createElement(_TableHead2.default, null, _react2.default.createElement(_TableRow2.default, null, this.props.Customers.CustomersTableHead.map(function (prop, key) {
+        return _react2.default.createElement(_TableCell2.default, { key: key }, prop);
+      }))), _react2.default.createElement(_TableBody2.default, null, this.props.Customers.CustomersTableData.data.map(function (customer, key) {
+        return _react2.default.createElement(_TableRow2.default, { key: key }, _react2.default.createElement(_TableCell2.default, null, customer["first_name"]), _react2.default.createElement(_TableCell2.default, null, customer["last_name"]), _react2.default.createElement(_TableCell2.default, null, customer["email"]), _react2.default.createElement(_TableCell2.default, null, _react2.default.createElement(_ButtonLink2.default, {
+          color: "primary",
+          to: "customers/" + customer["id"],
+          label: "Edit"
+        }), _react2.default.createElement(_Button2.default, { color: "danger", onClick: function onClick() {
+            return _this2.props.deleteCustomer(customer["id"]);
+          } }, "Delete")));
+      })))));
     }
   }]);
 
   return Customers;
 }(_react2.default.Component);
 
-Customers.propTypes = {
-  classes: _propTypes2.default.object.isRequired
-};
+exports.default = (0, _withStyles2.default)(_tableStyle2.default)(Customers);
+// export default Customers;
 
-exports.default = (0, _styles.withStyles)(dashboardStyle)(Customers);
+// {Object.keys(customer).map(customer_key => {
+//                         return
+//                         <TableCell key={customer_key}>
+//                         {customer[customer_key]}
+//                         </TableCell>;
+//                       })}
 
 /***/ }),
 /* 1854 */,
@@ -113962,12 +114008,6 @@ var CrudCustomer = function (_Component) {
       }))))), _react2.default.createElement(_CardFooter2.default, null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "button", color: "danger" }, "Cancel")), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "submit", color: "primary" }, "Save")))))))));
     }
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      debugger;
-      this.props.getCustomers();
-    }
-  }, {
     key: "render",
     value: function render() {
       return this.addCustomerDiv();
@@ -114211,6 +114251,10 @@ var _CrudCustomerReducer = __webpack_require__(1859);
 
 var _CrudCustomerReducer2 = _interopRequireDefault(_CrudCustomerReducer);
 
+var _CustomersReducer = __webpack_require__(1864);
+
+var _CustomersReducer2 = _interopRequireDefault(_CustomersReducer);
+
 var _reduxLogger = __webpack_require__(539);
 
 var _reduxThunk = __webpack_require__(540);
@@ -114226,6 +114270,7 @@ var logger = (0, _reduxLogger.createLogger)({
 });
 
 var rootReducer = (0, _redux.combineReducers)({
+  Customers: _CustomersReducer2.default,
   CrudCustomer: _CrudCustomerReducer2.default,
   form: _reduxForm.reducer
 });
@@ -114334,6 +114379,151 @@ var CheckboxField = function CheckboxField(_ref) {
 };
 
 exports.default = CheckboxField;
+
+/***/ }),
+/* 1864 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) {
+	for (var i = 1; i < arguments.length; i++) {
+		var source = arguments[i];for (var key in source) {
+			if (Object.prototype.hasOwnProperty.call(source, key)) {
+				target[key] = source[key];
+			}
+		}
+	}return target;
+};
+
+var CustomersReducer = function CustomersReducer() {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+		CustomersTableHead: ["First Name", "Last Name", "Email", "Action"],
+		CustomersTableData: { data: [] }
+	};
+	var action = arguments[1];
+
+	switch (action.type) {
+		case "SET_CUSTOMERS":
+			debugger;
+			state = _extends({}, state, {
+				CustomersTableData: action.payload
+			});
+			break;
+	}
+	return state;
+};
+
+exports.default = CustomersReducer;
+
+/***/ }),
+/* 1865 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _reactRedux = __webpack_require__(23);
+
+var _Customers = __webpack_require__(1853);
+
+var _Customers2 = _interopRequireDefault(_Customers);
+
+var _CustomersReducer = __webpack_require__(1864);
+
+var _CustomersActions = __webpack_require__(1866);
+
+var _styles = __webpack_require__(64);
+
+var _tableStyle = __webpack_require__(862);
+
+var _tableStyle2 = _interopRequireDefault(_tableStyle);
+
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var mapStateToProps = function mapStateToProps(state) {
+	return {
+		Customers: state.Customers
+	};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	return {
+		getCustomers: function getCustomers() {
+			dispatch((0, _CustomersActions.getCustomers)());
+		},
+		deleteCustomer: function deleteCustomer(data_id) {
+			dispatch((0, _CustomersActions.deleteCustomer)(data_id));
+		}
+	};
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)((0, _styles.withStyles)(_tableStyle2.default)(_Customers2.default));
+
+/***/ }),
+/* 1866 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.setCustomers = setCustomers;
+exports.getCustomers = getCustomers;
+exports.deleteCustomer = deleteCustomer;
+
+var _reduxForm = __webpack_require__(170);
+
+var _Ajax = __webpack_require__(461);
+
+var _Config = __webpack_require__(415);
+
+function setCustomers(customers) {
+	return {
+		type: "SET_CUSTOMERS",
+		payload: customers
+	};
+}
+
+function getCustomers() {
+	return function (dispatch) {
+		_Ajax.Ajax.call({
+			method: "GET",
+			url: _Config.BASE_URL + "admin/customers.json",
+			success: function success(result) {
+				dispatch(setCustomers(result));
+			}
+		});
+	};
+}
+
+function deleteCustomer(data_id) {
+	return function (dispatch) {
+		var values = {};
+		values._token = window.Laravel.csrfToken;
+		_Ajax.Ajax.call({
+			method: "DELETE",
+			data: values,
+			url: _Config.BASE_URL + "admin/customers/" + data_id + ".json",
+			success: function success(result) {
+				dispatch(setCustomers(result));
+			}
+		});
+	};
+}
 
 /***/ })
 /******/ ]);

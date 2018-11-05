@@ -1,5 +1,5 @@
 import Dashboard_ from './Dashboard/Dashboard';
-import Customers_ from './Customers/Customers';
+import Customers_ from './Customers/CustomersContainer';
 import CrudCustomer_ from './Customers/CrudCustomerContainer';
 import Products_ from './Products/Products';
 

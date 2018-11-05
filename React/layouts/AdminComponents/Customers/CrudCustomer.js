@@ -202,11 +202,6 @@ class CrudCustomer extends Component {
     );
   }
 
-    componentDidMount() {
-      debugger;
-      this.props.getCustomers();
-    }
-
   render() {
     return this.addCustomerDiv();
   }
