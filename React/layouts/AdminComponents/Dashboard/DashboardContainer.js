@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Login from "./Login";
+import Dashboard from "./Dashboard";
 
 import { LoginReducer } from "Reducers/Auth/LoginReducer";
 import { showHidePassword, directAdminLogin } from "Actions/Auth/LoginActions";
@@ -26,4 +26,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(dashboardStyle)(Login));
+)(withStyles(dashboardStyle)(Dashboard));

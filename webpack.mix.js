@@ -14,7 +14,7 @@ mix.webpackConfig({
     module: {
         rules: [
             {
-                test: /\.js?$/,
+                test: /\.(js|jsx)?$/,
                 exclude: /node_modules(?!\/foundation-sites)|bower_components/,
                 use: {
                     loader: "babel-loader",

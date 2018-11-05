@@ -79,8 +79,4 @@ class Customers extends React.Component {
   }
 }
 
-Customers.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(dashboardStyle)(Customers);
+export default Customers;

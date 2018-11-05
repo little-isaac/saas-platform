@@ -21,28 +21,6 @@ class Main extends React.Component {
             redirect: false
         };
     }
-    componentDidMount() {
-        var that = this;
-        Ajax.call({
-            url: BASE_URL + "shop.json",
-            method: "get",
-            success: function(data) {
-                if (data.error == -1) {
-                    if (location.pathname == "/payment") {
-                    } else {
-                        that.setState({
-                            redirect: true
-                        });
-                    }
-                    return false;
-                }
-                if (data.user.is_paid == 0) {
-                }
-                //            that.themes = data.themes;
-            },
-            error: function(error) {}
-        });
-    }
     handleCloseSnackbar = () => {
         this.props.snackbar.onClose();
     };
