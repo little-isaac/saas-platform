@@ -1,5 +1,5 @@
 import { SubmissionError } from "redux-form";
-import { Ajax } from "layouts/Ajax";
+import axios from "axios";
 import { ADMIN_BASE_URL, BASE_URL } from "layouts/static/Config";
 
 export function showHidePassword() {
@@ -9,7 +9,6 @@ export function showHidePassword() {
 }
 
 export function validateAdminRegister(values) {
-	debugger;
 	var is_error = false;
 	var error = {};
 	if (typeof values.error !== "undefined" && values.error == 1) {
@@ -31,30 +30,40 @@ export function validateAdminRegister(values) {
 	}
 	if (is_error) {
 		throw new SubmissionError(error);
+
 		return false;
 	}
 	return true;
 }
 
 export function directAdminRegister(values) {
-	debugger;
 	return dispatch => {
 		if (validateAdminRegister(values)) {
 			values._token = window.Laravel.csrfToken;
 
-			Ajax.call({
+			return axios({
 				method: "POST",
 				data: values,
-				url: BASE_URL + "register.json",
-				success: function(result) {
+				url: BASE_URL + "register.json"
+			})
+				.then(function(res) {
+					var result = res.data;
 					if (result.status) {
-						location.href = "//"+values.store_name+".saas-platform.com/admin/dashboard";
+						location.href =
+							"//" +
+							values.store_name +
+							".saas-platform.com/admin/dashboard";
 					} else {
 						values.error = result.error;
 					 	validateAdminRegister(values);
 					}
-				}
-			});
+				})
+				.catch(error => {
+					debugger;
+					if (error instanceof SubmissionError) {
+						throw new SubmissionError(error.errors);
+					}
+				});
 		}
 	};
 }

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import CrudCustomer from "./CrudCustomer";
 
 import { CrudCustomerReducer } from "Reducers/Admin/CrudCustomerReducer";
-import { checkboxClick, newCrudCustomer} from "Actions/Admin/CrudCustomerActions";
+import { checkboxClick, newCrudCustomer, getCustomers} from "Actions/Admin/CrudCustomerActions";
 import { withStyles } from "@material-ui/core/styles";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
@@ -19,6 +19,9 @@ const mapDispatchToProps = dispatch => {
 		},
 		newCrudCustomer: (values) => {
 			dispatch(newCrudCustomer(values));
+		},
+		getCustomers: () => {
+			dispatch(getCustomers());
 		}
 	};
 };

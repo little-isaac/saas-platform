@@ -3,6 +3,9 @@
 if (!function_exists('SetDatabase')) {
 
     function SetDatabase($user_id) {
+//        dd([
+//            $user_id,
+//            'database.connections.' . env('STORES_DB_CONNECTION') . '.database', env('STORES_DB_PREFIX') . $user_id]);
         DB::disconnect(env('STORES_DB_CONNECTION'));
         Config::set('database.connections.' . env('STORES_DB_CONNECTION') . '.database', env('STORES_DB_PREFIX') . $user_id);
     }
