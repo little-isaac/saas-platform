@@ -1,4 +1,6 @@
 const CurdCustomerReducer = (state = {
+customers: '',
+customer: '',
 accepts_marketing : false,
 tax_exempt: false
 }, action) => {

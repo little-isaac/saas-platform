@@ -61,22 +61,15 @@ import {
 
 import blue from "@material-ui/core/colors/blue";
 
-import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
-
 import Main from "layouts/AdminComponents/Main";
-class Customers extends React.Component {
-  state = {
-    value: 0
-  };
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
 
-  handleChangeIndex = index => {
-    this.setState({ value: index });
-  };
+class Customers extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, ...other } = this.props;
     return (
       <div>
         <h3>Customers</h3>

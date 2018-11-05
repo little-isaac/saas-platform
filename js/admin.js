@@ -113490,16 +113490,18 @@ var _blue = __webpack_require__(164);
 
 var _blue2 = _interopRequireDefault(_blue);
 
-var _dashboardStyle = __webpack_require__(197);
-
-var _dashboardStyle2 = _interopRequireDefault(_dashboardStyle);
-
 var _Main = __webpack_require__(198);
 
 var _Main2 = _interopRequireDefault(_Main);
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
 }
 
 function _classCallCheck(instance, Constructor) {
@@ -113529,30 +113531,18 @@ function _inherits(subClass, superClass) {
 var Customers = function (_React$Component) {
   _inherits(Customers, _React$Component);
 
-  function Customers() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
+  function Customers(props) {
     _classCallCheck(this, Customers);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Customers.__proto__ || Object.getPrototypeOf(Customers)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      value: 0
-    }, _this.handleChange = function (event, value) {
-      _this.setState({ value: value });
-    }, _this.handleChangeIndex = function (index) {
-      _this.setState({ value: index });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    return _possibleConstructorReturn(this, (Customers.__proto__ || Object.getPrototypeOf(Customers)).call(this, props));
   }
 
   _createClass(Customers, [{
     key: "render",
     value: function render() {
-      var classes = this.props.classes;
+      var _props = this.props,
+          classes = _props.classes,
+          other = _objectWithoutProperties(_props, ["classes"]);
 
       return _react2.default.createElement("div", null, _react2.default.createElement("h3", null, "Customers"), _react2.default.createElement(_ButtonLink2.default, { color: "primary", to: "customers/new", label: "Add customer" }));
     }
@@ -113565,7 +113555,7 @@ Customers.propTypes = {
   classes: _propTypes2.default.object.isRequired
 };
 
-exports.default = (0, _styles.withStyles)(_dashboardStyle2.default)(Customers);
+exports.default = (0, _styles.withStyles)(dashboardStyle)(Customers);
 
 /***/ }),
 /* 1854 */,
@@ -113772,16 +113762,6 @@ var _createClass = function () {
   };
 }();
 
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }return target;
-};
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -113874,8 +113854,22 @@ var _Main = __webpack_require__(198);
 
 var _Main2 = _interopRequireDefault(_Main);
 
+var _InputField = __webpack_require__(1862);
+
+var _InputField2 = _interopRequireDefault(_InputField);
+
+var _CheckboxField = __webpack_require__(1863);
+
+var _CheckboxField2 = _interopRequireDefault(_CheckboxField);
+
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
 }
 
 function _classCallCheck(instance, Constructor) {
@@ -113895,28 +113889,11 @@ function _inherits(subClass, superClass) {
     throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
   }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 }
-
-function _objectWithoutProperties(obj, keys) {
-  var target = {};for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
-  }return target;
-}
 // core components
 
 
 // @material-ui/icons
 
-
-var InputField = function InputField(_ref) {
-  var input = _ref.input,
-      label = _ref.label,
-      _ref$meta = _ref.meta,
-      touched = _ref$meta.touched,
-      error = _ref$meta.error,
-      custom = _objectWithoutProperties(_ref, ["input", "label", "meta"]);
-
-  return _react2.default.createElement(_react2.default.Fragment, null, _react2.default.createElement(_core.InputLabel, null, label), _react2.default.createElement(_core.Input, _extends({}, input, custom, { error: touched && error ? true : false })), touched && error && _react2.default.createElement("span", null, error));
-};
 
 var CrudCustomer = function (_Component) {
   _inherits(CrudCustomer, _Component);
@@ -113938,7 +113915,7 @@ var CrudCustomer = function (_Component) {
           other = _objectWithoutProperties(_props, ["classes", "handleSubmit"]);
 
       return _react2.default.createElement("div", null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 8 }, _react2.default.createElement("form", { onSubmit: handleSubmit(this.props.newCrudCustomer) }, _react2.default.createElement(_Card2.default, null, _react2.default.createElement(_CardHeader2.default, { color: "primary" }, _react2.default.createElement("h4", { className: classes.cardTitleWhite }, "Add customer")), _react2.default.createElement(_CardBody2.default, null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
-        component: InputField,
+        component: _InputField2.default,
         type: "text",
         label: "First Name",
         name: "first_name"
@@ -113948,43 +113925,47 @@ var CrudCustomer = function (_Component) {
         sm: 12,
         md: 6
       }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
-        component: InputField,
+        component: _InputField2.default,
         type: "text",
         label: "Last Name",
         name: "last_name"
       })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
-        component: InputField,
+        component: _InputField2.default,
         label: "Email",
         name: "email",
         type: "text"
       })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
-        component: InputField,
+        component: _InputField2.default,
         label: "Phone Number",
         name: "phone_number",
         type: "text"
-      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_FormControlLabel2.default, {
-        control: _react2.default.createElement(_core.Checkbox, {
-          color: "primary",
-          name: "accepts_marketing",
-          value: this.props.CrudCustomer.accepts_marketing ? "on" : "off",
-          checked: this.props.CrudCustomer.accepts_marketing,
-          onChange: function onChange() {
-            return _this2.props.checkboxClick("ACCEPTS_MARKETING");
-          }
-        }),
-        label: "Customer accepts marketing"
-      }))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_FormControlLabel2.default, {
-        control: _react2.default.createElement(_core.Checkbox, {
-          color: "primary",
-          name: "tax_exempt",
-          value: this.props.CrudCustomer.tax_exempt ? "on" : "off",
-          checked: this.props.CrudCustomer.tax_exempt,
-          onChange: function onChange() {
-            return _this2.props.checkboxClick("TAX_EXEMPT");
-          }
-        }),
-        label: "Customer is tax exempt"
-      })))), _react2.default.createElement(_CardFooter2.default, null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "button", color: "danger" }, "Cancel")), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "submit", color: "primary" }, "Save")))))))));
+      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _CheckboxField2.default,
+        label: "Customer accepts marketing",
+        color: "primary",
+        name: "accepts_marketing",
+        value: this.props.CrudCustomer.accepts_marketing ? new String("on") : new String("off"),
+        checked: this.props.CrudCustomer.accepts_marketing,
+        onChange: function onChange() {
+          return _this2.props.checkboxClick("ACCEPTS_MARKETING");
+        }
+      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _CheckboxField2.default,
+        label: "Customer is tax exempt",
+        color: "primary",
+        name: "tax_exempt",
+        value: this.props.CrudCustomer.tax_exempt ? new String("on") : new String("off"),
+        checked: this.props.CrudCustomer.tax_exempt,
+        onChange: function onChange() {
+          return _this2.props.checkboxClick("TAX_EXEMPT");
+        }
+      }))))), _react2.default.createElement(_CardFooter2.default, null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "button", color: "danger" }, "Cancel")), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "submit", color: "primary" }, "Save")))))))));
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      debugger;
+      this.props.getCustomers();
     }
   }, {
     key: "render",
@@ -114047,6 +114028,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		},
 		newCrudCustomer: function newCrudCustomer(values) {
 			dispatch((0, _CrudCustomerActions.newCrudCustomer)(values));
+		},
+		getCustomers: function getCustomers() {
+			dispatch((0, _CrudCustomerActions.getCustomers)());
 		}
 	};
 };
@@ -114076,6 +114060,8 @@ var _extends = Object.assign || function (target) {
 
 var CurdCustomerReducer = function CurdCustomerReducer() {
 	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+		customers: '',
+		customer: '',
 		accepts_marketing: false,
 		tax_exempt: false
 	};
@@ -114110,6 +114096,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.checkboxClick = checkboxClick;
 exports.newCrudCustomer = newCrudCustomer;
+exports.getCustomers = getCustomers;
+exports.getCustomer = getCustomer;
+exports.updateCustomer = updateCustomer;
+exports.deleteCustomer = deleteCustomer;
 
 var _reduxForm = __webpack_require__(170);
 
@@ -114131,11 +114121,72 @@ function newCrudCustomer(values) {
 		_Ajax.Ajax.call({
 			method: "POST",
 			data: values,
-			url: _Config.BASE_URL + "register.json",
+			url: _Config.BASE_URL + "admin/customers/create.json",
 			success: function success(result) {
-				if (result.status) {
-					location.href = "//" + values.store_name + ".saas-platform.com/admin/customers/" + values.id;
-				} else {}
+				if (result.is_new) {
+					location.href = "" + result.customer.id;
+				} else {
+					location.href = "./";
+				}
+			}
+		});
+	};
+}
+
+function getCustomers() {
+	return function (dispatch) {
+		_Ajax.Ajax.call({
+			method: "GET",
+			url: _Config.BASE_URL + "admin/customers.json",
+			success: function success(result) {}
+		});
+	};
+}
+
+function getCustomer(customer_id) {
+	return function (dispatch) {
+		_Ajax.Ajax.call({
+			method: "GET",
+			url: _Config.BASE_URL + "admin/customers/" + customer_id + ".json",
+			success: function success(result) {
+				if (result.is_new) {
+					this.setState({ data: data });
+				} else {
+					location.href = "./";
+				}
+			}
+		});
+	};
+}
+
+function updateCustomer(values) {
+	return function (dispatch) {
+		_Ajax.Ajax.call({
+			method: "PUT",
+			data: values,
+			url: _Config.BASE_URL + "admin/customers/" + customer_id + ".json",
+			success: function success(result) {
+				if (result.is_new) {
+					this.setState({ data: data });
+				} else {
+					location.href = "./";
+				}
+			}
+		});
+	};
+}
+
+function deleteCustomer(customer_id) {
+	return function (dispatch) {
+		_Ajax.Ajax.call({
+			method: "DELETE",
+			url: _Config.BASE_URL + "admin/customers/" + customer_id + ".json",
+			success: function success(result) {
+				if (result.is_new) {
+					this.setState({ data: data });
+				} else {
+					location.href = "./";
+				}
 			}
 		});
 	};
@@ -114180,6 +114231,109 @@ var rootReducer = (0, _redux.combineReducers)({
 });
 
 exports.default = (0, _redux.createStore)(rootReducer, {}, (0, _redux.applyMiddleware)(logger, _reduxThunk2.default));
+
+/***/ }),
+/* 1862 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(175);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+var InputField = function InputField(_ref) {
+  var input = _ref.input,
+      label = _ref.label,
+      _ref$meta = _ref.meta,
+      touched = _ref$meta.touched,
+      error = _ref$meta.error,
+      custom = _objectWithoutProperties(_ref, ["input", "label", "meta"]);
+
+  return _react2.default.createElement(_react2.default.Fragment, null, _react2.default.createElement(_core.InputLabel, null, label), _react2.default.createElement(_core.Input, _extends({}, input, custom, { error: touched && error ? true : false })), touched && error && _react2.default.createElement("span", null, error));
+};
+
+exports.default = InputField;
+
+/***/ }),
+/* 1863 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) {
+	for (var i = 1; i < arguments.length; i++) {
+		var source = arguments[i];for (var key in source) {
+			if (Object.prototype.hasOwnProperty.call(source, key)) {
+				target[key] = source[key];
+			}
+		}
+	}return target;
+};
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(175);
+
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _objectWithoutProperties(obj, keys) {
+	var target = {};for (var i in obj) {
+		if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+	}return target;
+}
+
+var CheckboxField = function CheckboxField(_ref) {
+	var input = _ref.input,
+	    label = _ref.label,
+	    _ref$meta = _ref.meta,
+	    touched = _ref$meta.touched,
+	    error = _ref$meta.error,
+	    custom = _objectWithoutProperties(_ref, ["input", "label", "meta"]);
+
+	return _react2.default.createElement(_react2.default.Fragment, null, _react2.default.createElement(_core.FormControlLabel, {
+		control: _react2.default.createElement(_core.Checkbox, _extends({ type: "checkbox" }, input, custom)),
+		label: label
+	}));
+};
+
+exports.default = CheckboxField;
 
 /***/ })
 /******/ ]);

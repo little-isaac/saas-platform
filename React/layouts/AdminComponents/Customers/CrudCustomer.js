@@ -65,13 +65,8 @@ import blue from "@material-ui/core/colors/blue";
 
 import Main from "layouts/AdminComponents/Main";
 
-const InputField = ({ input, label, meta: { touched, error }, ...custom }) => (
-  <React.Fragment>
-    <InputLabel>{label}</InputLabel>
-    <Input {...input} {...custom} error={touched && error ? true : false} />
-    {touched && error && <span>{error}</span>}
-  </React.Fragment>
-);
+import InputField from "layouts/static/InputField";
+import CheckboxField from "layouts/static/CheckboxField";
 
 class CrudCustomer extends Component {
   constructor(props) {
@@ -117,6 +112,7 @@ class CrudCustomer extends Component {
                       </FormControl>
                     </GridItem>
                   </GridContainer>
+
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
                       <FormControl fullWidth>
@@ -141,46 +137,46 @@ class CrudCustomer extends Component {
                       </FormControl>
                     </GridItem>
                   </GridContainer>
+
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            color="primary"
-                            name="accepts_marketing"
-                            value={
-                              this.props.CrudCustomer.accepts_marketing
-                                ? "on"
-                                : "off"
-                            }
-                            checked={this.props.CrudCustomer.accepts_marketing}
-                            onChange={() =>
-                              this.props.checkboxClick("ACCEPTS_MARKETING")
-                            }
-                          />
-                        }
-                        label="Customer accepts marketing"
-                      />
+                      <FormControl fullWidth>
+                        <Field
+                          component={CheckboxField}
+                          label="Customer accepts marketing"
+                          color="primary"
+                          name="accepts_marketing"
+                          value={
+                            this.props.CrudCustomer.accepts_marketing
+                              ? new String("on")
+                              : new String("off")
+                          }
+                          checked={this.props.CrudCustomer.accepts_marketing}
+                          onChange={() =>
+                            this.props.checkboxClick("ACCEPTS_MARKETING")
+                          }
+                        />
+                      </FormControl>
                     </GridItem>
                   </GridContainer>
+
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            color="primary"
-                            name="tax_exempt"
-                            value={
-                              this.props.CrudCustomer.tax_exempt ? "on" : "off"
-                            }
-                            checked={this.props.CrudCustomer.tax_exempt}
-                            onChange={() =>
-                              this.props.checkboxClick("TAX_EXEMPT")
-                            }
-                          />
-                        }
-                        label="Customer is tax exempt"
-                      />
+                      <FormControl fullWidth>
+                        <Field
+                          component={CheckboxField}
+                          label="Customer is tax exempt"
+                          color="primary"
+                          name="tax_exempt"
+                          value={
+                            this.props.CrudCustomer.tax_exempt ? new String("on") : new String("off")
+                          }
+                          checked={this.props.CrudCustomer.tax_exempt}
+                          onChange={() =>
+                            this.props.checkboxClick("TAX_EXEMPT")
+                          }
+                        />
+                      </FormControl>
                     </GridItem>
                   </GridContainer>
                 </CardBody>
@@ -205,6 +201,11 @@ class CrudCustomer extends Component {
       </div>
     );
   }
+
+    componentDidMount() {
+      debugger;
+      this.props.getCustomers();
+    }
 
   render() {
     return this.addCustomerDiv();

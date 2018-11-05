@@ -14,8 +14,9 @@ Route::domain('{store_name}.saas-platform.com')->group(function () {
 	Route::group(
 		['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['AdminCheckLogin']], function () {
 
-			Route::get('customers.json', 'CustomerController@getCustomers');
+			Route::get('customers.json', 'CustomerController@getAllCustomers');
 			Route::group(['prefix' => 'customers'], function () {
+				Route::post('create.json', 'CustomerController@createCustomer');
 				Route::get('{customer_id}.json', 'CustomerController@getCustomer');
 				Route::put('{customer_id}.json', 'CustomerController@updateCustomer');
 				Route::delete('{customer_id}.json', 'CustomerController@deleteCustomer');
