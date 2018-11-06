@@ -123,9 +123,3 @@ class Customers extends React.Component {
 export default withStyles(tableStyle)(Customers);
 // export default Customers;
 
-// {Object.keys(customer).map(customer_key => {
-//                         return
-//                         <TableCell key={customer_key}>
-//                         {customer[customer_key]}
-//                         </TableCell>;
-//                       })}

@@ -61,25 +61,22 @@ import {
 
 import blue from "@material-ui/core/colors/blue";
 
-import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 import Main from "layouts/AdminComponents/Main";
 class Dashboard extends React.Component {
-  state = {
-    value: 0
-  };
-  
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-      <Main header="Dashboard"/>
-      </div>
-    );
-  }
+    state = {
+        value: 0
+    };
+
+    render() {
+        const { classes } = this.props;
+        return (
+            <Main header="Dashboard">
+                <Grid container>
+                    <GridItem xs={12} sm={12} md={12} />
+                </Grid>
+            </Main>
+        );
+    }
 }
 
-Dashboard.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(dashboardStyle)(Dashboard);
+export default Dashboard;

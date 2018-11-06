@@ -15,10 +15,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		showHidePassword: () => {
-			dispatch(showHidePassword());
+			return dispatch(showHidePassword());
 		},
 		directAdminRegister: (values) => {
-			dispatch(directAdminRegister(values));
+			return dispatch(directAdminRegister(values));
 		}
 	};
 };
