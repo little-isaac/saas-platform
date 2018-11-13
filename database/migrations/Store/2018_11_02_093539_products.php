@@ -11,7 +11,7 @@ class Products extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigincrements('id');
             $table->string('title');
-            $table->binary('body_html');
+            $table->binary('body_html')->nullable();
             $table->string('vendor')->nullable();
             $table->string('product_type')->nullable();
             $table->string('handle');

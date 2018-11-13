@@ -4,7 +4,7 @@ namespace App\Model\Store;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Product extends Model
 {
-    protected $connection = "stores";
+     protected $connection = "stores";
 }

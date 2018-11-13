@@ -1,6 +1,15 @@
 import { ADMIN_BASE_URL } from './Config';
 
-import {Dashboard, Customers, Products, CrudCustomer} from 'layouts/AdminComponents/Components';
+import { 
+         ViewCustomers,
+         CreateCustomer,
+         UpdateCustomer,
+         ViewProducts,
+         CreateProduct,
+         UpdateProduct,
+         Dashboard,
+         Products 
+        } from 'layouts/AdminComponents/Components';
 
 import {
     Dashboard as DashboardIcon,
@@ -9,24 +18,36 @@ import {
 } from "@material-ui/icons";
 
 export const ROUTES = [
-	{
-		path: ADMIN_BASE_URL + "dashboard",
-		component: Dashboard	
-	},
     {
         path: ADMIN_BASE_URL + "customers",
-        component: Customers    
+        component: ViewCustomers    
     },
     {
         path: ADMIN_BASE_URL + "customers/new",
-        component: CrudCustomer    
+        component: CreateCustomer    
+    },
+    {
+        path: ADMIN_BASE_URL + "customers/:id",
+        component: UpdateCustomer    
     },
     {
         path: ADMIN_BASE_URL + "products",
-        component: Products    
-    }
+        component: ViewProducts    
+    },
+    {
+        path: ADMIN_BASE_URL + "products/new",
+        component: CreateProduct    
+    },
+    {
+        path: ADMIN_BASE_URL + "products/:id",
+        component: UpdateProduct    
+    },
+    {
+	path: ADMIN_BASE_URL + "dashboard",
+	component: Dashboard	
+    },
+    
 ];
-
 
 export const SIDEBAR_NAV_LINKS = [
     {

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-
 import PropTypes from "prop-types";
 import classNames from "classnames";
-
 import { Field, reduxForm } from "redux-form";
+
 // core components
 import {
   Icon,
@@ -59,27 +58,39 @@ import {
   Code,
   Cloud
 } from "@material-ui/icons";
+
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import blue from "@material-ui/core/colors/blue";
-
 import Main from "layouts/AdminComponents/Main";
 
 import InputField from "layouts/static/InputField";
 import CheckboxField from "layouts/static/CheckboxField";
 
-class CrudCustomer extends Component {
+class CreateOne extends Component { 
   constructor(props) {
     super(props);
   }
 
-  addCustomerDiv() {
+  CreateDiv() {
     const { classes, handleSubmit, ...other } = this.props;
     return (
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={8}>
-            <form onSubmit={handleSubmit(this.props.newCrudCustomer)}>
+            <form onSubmit={handleSubmit(this.props.createSingle)}>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <Button type="button" color="danger">
+                        Cancel
+                      </Button>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <Button type="submit" color="primary">
+                        Save
+                      </Button>
+                    </GridItem>
+                  </GridContainer>
               <Card>
                 <CardHeader color="primary">
                   <h4 className={classes.cardTitleWhite}>Add customer</h4>
@@ -97,7 +108,6 @@ class CrudCustomer extends Component {
                       </FormControl>
                     </GridItem>
                     <GridItem
-                      className={classes.marginBottom20}
                       xs={12}
                       sm={12}
                       md={6}
@@ -147,11 +157,11 @@ class CrudCustomer extends Component {
                           color="primary"
                           name="accepts_marketing"
                           value={
-                            this.props.CrudCustomer.accepts_marketing
+                            this.props.Data.accepts_marketing
                               ? new String("on")
                               : new String("off")
                           }
-                          checked={this.props.CrudCustomer.accepts_marketing}
+                          checked={this.props.Data.accepts_marketing}
                           onChange={() =>
                             this.props.checkboxClick("ACCEPTS_MARKETING")
                           }
@@ -169,9 +179,11 @@ class CrudCustomer extends Component {
                           color="primary"
                           name="tax_exempt"
                           value={
-                            this.props.CrudCustomer.tax_exempt ? new String("on") : new String("off")
+                            this.props.Data.tax_exempt
+                              ? new String("on")
+                              : new String("off")
                           }
-                          checked={this.props.CrudCustomer.tax_exempt}
+                          checked={this.props.Data.tax_exempt}
                           onChange={() =>
                             this.props.checkboxClick("TAX_EXEMPT")
                           }
@@ -180,20 +192,130 @@ class CrudCustomer extends Component {
                     </GridItem>
                   </GridContainer>
                 </CardBody>
-                <CardFooter>
+              </Card>
+              <Card>
+                <CardBody>
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={6}>
-                      <Button type="button" color="danger">
-                        Cancel
-                      </Button>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          type="text"
+                          label="First Name"
+                          name="address_first_name"
+                        />
+                      </FormControl>
                     </GridItem>
-                    <GridItem xs={12} sm={12} md={6}>
-                      <Button type="submit" color="primary">
-                        Save
-                      </Button>
+                    <GridItem
+                      className={classes.marginBottom20}
+                      xs={12}
+                      sm={12}
+                      md={6}
+                    >
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          type="text"
+                          label="Last Name"
+                          name="address_last_name"
+                        />
+                      </FormControl>
                     </GridItem>
                   </GridContainer>
-                </CardFooter>
+
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="Company"
+                          name="company"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="Address"
+                          name="address_1"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="Apartment, suite, etc."
+                          name="address_2"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="City"
+                          name="city"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          type="text"
+                          label="Country"
+                          name="country"
+                        />
+                      </FormControl>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          type="text"
+                          label="State"
+                          name="state"
+                        />
+                      </FormControl>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={4}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          type="text"
+                          label="Zip code"
+                          name="zip_code"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="Phone"
+                          name="address_phone"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                </CardBody>
               </Card>
             </form>
           </GridItem>
@@ -203,13 +325,12 @@ class CrudCustomer extends Component {
   }
 
   render() {
-    return this.addCustomerDiv();
+      return this.CreateDiv();
   }
 }
 
-CrudCustomer = reduxForm({
-  form: "CrudCustomerForm"
-})(CrudCustomer);
+CreateOne = reduxForm({
+  form: "CreateOneForm"
+})(CreateOne);
 
-// export default Register;
-export default CrudCustomer;
+export default CreateOne;

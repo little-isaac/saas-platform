@@ -59,7 +59,6 @@ export function directAdminRegister(values) {
 					}
 				})
 				.catch(error => {
-					debugger;
 					if (error instanceof SubmissionError) {
 						throw new SubmissionError(error.errors);
 					}

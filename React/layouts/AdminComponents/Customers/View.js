@@ -67,14 +67,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import tableStyle from "assets/jss/material-dashboard-react/components/tableStyle.jsx";
 import Main from "layouts/AdminComponents/Main";
 
-class Customers extends React.Component {
+class View extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    debugger;
-    const data = this.props.getCustomers();
+    const data = this.props.getAll(); 
   }
 
   render() {
@@ -87,13 +86,13 @@ class Customers extends React.Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                {this.props.Customers.CustomersTableHead.map((prop, key) => {
+                {this.props.Data.TableHeader.map((prop, key) => {
                   return <TableCell key={key}>{prop}</TableCell>;
                 })}
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.props.Customers.CustomersTableData.data.map(
+              {this.props.Data.TableData.data.map(
                 (customer, key) => {
                   return (
                     <TableRow key={key}>
@@ -106,7 +105,7 @@ class Customers extends React.Component {
                           to={"customers/" + customer["id"]}
                           label="Edit"
                         />
-                        <Button color="danger" onClick={() => this.props.deleteCustomer(customer["id"])}>Delete</Button>
+                        <Button color="danger" onClick={() => this.props.deleteSingle(customer["id"],key)}>Delete</Button>
                       </TableCell>
                     </TableRow>
                   );
@@ -120,6 +119,6 @@ class Customers extends React.Component {
   }
 }
 
-export default withStyles(tableStyle)(Customers);
-// export default Customers;
+export default withStyles(tableStyle)(View);
+// export default View; 
 

@@ -1,14 +1,18 @@
 import { connect } from "react-redux";
-import CrudCustomer from "./CrudCustomer";
+import CreateOne from "./CreateOne";
 
-import { CrudCustomerReducer } from "Reducers/Admin/CrudCustomerReducer";
-import { checkboxClick, newCrudCustomer, getCustomers} from "Actions/Admin/CrudCustomerActions";
+import { NewCustomerReducer } from "Reducers/Admin/Products/CreateReducer";
+import {
+         checkboxClick,
+         createSingle
+       } from "Actions/Admin/Products/CreateActions";
+       
 import { withStyles } from "@material-ui/core/styles";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
 const mapStateToProps = state => {
 	return {
-		CrudCustomer: state.CrudCustomer
+		Data: state.CreateCustomer
 	};
 };
 
@@ -17,11 +21,8 @@ const mapDispatchToProps = dispatch => {
 		checkboxClick: (value) => {
 			dispatch(checkboxClick(value));
 		},
-		newCrudCustomer: (values) => {
-			dispatch(newCrudCustomer(values));
-		},
-		getCustomers: () => {
-			dispatch(getCustomers());
+		createSingle: (values) => {
+			dispatch(createSingle(values));
 		}
 	};
 };
@@ -29,4 +30,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(dashboardStyle)(CrudCustomer));
+)(withStyles(dashboardStyle)(CreateOne));

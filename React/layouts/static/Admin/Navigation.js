@@ -46,7 +46,6 @@ class Navigation extends React.Component {
     this.setState({ open: true });
   }
   logout = () => {
-    debugger;
     Ajax.call({
       url: BASE_URL + "logout",
       method: "get",
