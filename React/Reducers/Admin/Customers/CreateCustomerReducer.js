@@ -1,7 +1,7 @@
-const UpdateReducer = (
+const CreateCustomerReducer = (
     state = {
-        products: "",
-        product: {},
+        customers: "",
+        customer: "",
         accepts_marketing: false,
         tax_exempt: false
     },
@@ -20,17 +20,8 @@ const UpdateReducer = (
                 tax_exempt: !state.tax_exempt
             };
             break;
-        case "SET_SINGLE":
-            var product = action.payload;
-            state = {
-                ...state,
-                product: product,
-                accepts_marketing: (product.accepts_marketing) ? true : false,
-                tax_exempt: (product.tax_exempt) ? true : false
-            };
-            break;
     }
     return state;
 };
 
-export default UpdateReducer;
+export default CreateCustomerReducer;

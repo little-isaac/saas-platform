@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import View from "./View";
+import Products from "./Products";
 
-import { GetReducer } from "Reducers/Admin/Products/GetReducer";
-import { getAll, deleteSingle } from "Actions/Admin/Products/GetActions";
+import { GetProductsReducer } from "Reducers/Admin/Products/GetProductsReducer";
+import { getAll, deleteSingle } from "Actions/Admin/Products/GetProductsActions";
 
 import { withStyles } from "@material-ui/core/styles";
 
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(tableStyle)(View));
+)(withStyles(tableStyle)(Products));

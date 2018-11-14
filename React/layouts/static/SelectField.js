@@ -5,7 +5,7 @@ import { InputLabel, Select, MenuItem } from "@material-ui/core";
 const SelectField = ({
   input,
   label,
-  displayOption,
+  displayOptions,
   meta: { touched, error },
   ...custom
 }) => (
@@ -14,10 +14,10 @@ const SelectField = ({
       {label}
     </InputLabel>
     <Select {...input} {...custom}>
-      {displayOption.map((prop, key) => {
+      {displayOptions.map((displayOption, index) => {
         return (
-          <MenuItem key={key} value={prop}>
-            {prop}
+          <MenuItem key={index} value={displayOption.id}>
+            {displayOption.name}
           </MenuItem>
         );
       })}

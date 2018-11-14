@@ -1,19 +1,18 @@
-const GetReducer = (
+const GetProductsReducer = (
 	state = {
-		TableHeader: ["First Name", "Last Name", "Email", "Action"],
+		TableHeader: ["Product", "Type", "Vendor", "Action"],
 		TableData: { data:[] }
 	},
 	action
 ) => {
 	switch (action.type) {
-
-		case "SET_ALL":
+		case "SET_ALL_PRODUCTS":
 			state = {
 				...state,
 				TableData: action.payload
 			};
 			break;
-		case "REMOVE_SINGLE":
+		case "REMOVE_SINGLE_PRODUCT":
 			var all_data = state.TableData;
 			all_data.data.splice(action.index, 1);
 			state = {
@@ -25,4 +24,4 @@ const GetReducer = (
 	return state;
 };
 
-export default GetReducer;
+export default GetProductsReducer;

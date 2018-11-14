@@ -1,4 +1,4 @@
-const UpdateReducer = (
+const UpdateCustomerReducer = (
     state = {
         customers: "",
         customer: {},
@@ -11,7 +11,7 @@ const UpdateReducer = (
     switch (action.type) {
         case "ACCEPTS_MARKETING":
             state = {
-                ...state,
+                ...state, 
                 accepts_marketing: !state.accepts_marketing
             };
             break;
@@ -20,8 +20,8 @@ const UpdateReducer = (
                 ...state,
                 tax_exempt: !state.tax_exempt
             };
-            break;
-        case "SET_SINGLE":
+            break; 
+        case "SET_SINGLE_CUSTOMER":
             var customer = action.payload;
             state = {
                 ...state,
@@ -34,4 +34,4 @@ const UpdateReducer = (
     return state;
 };
 
-export default UpdateReducer;
+export default UpdateCustomerReducer;

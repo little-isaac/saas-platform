@@ -1,7 +1,7 @@
-const CreateReducer = (
+const CreateProductReducer = (
     state = {
-        customers: "",
-        customer: "",
+        products: "",
+        product: "",
         accepts_marketing: false,
         tax_exempt: false
     },
@@ -24,4 +24,4 @@ const CreateReducer = (
     return state;
 };
 
-export default CreateReducer;
+export default CreateProductReducer;

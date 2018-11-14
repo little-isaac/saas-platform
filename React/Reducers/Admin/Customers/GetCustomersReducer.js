@@ -1,19 +1,19 @@
-const GetReducer = (
+const GetCustomersReducer = (
 	state = {
-		TableHeader: ["Product", "Type", "Vendor", "Action"],
+		TableHeader: ["First Name", "Last Name", "Email", "Action"],
 		TableData: { data:[] }
 	},
 	action
 ) => {
 	switch (action.type) {
 
-		case "SET_ALL":
+		case "SET_ALL_CUSTOMERS":
 			state = {
 				...state,
 				TableData: action.payload
 			};
 			break;
-		case "REMOVE_SINGLE":
+		case "REMOVE_SINGLE_CUSTOMER":
 			var all_data = state.TableData;
 			all_data.data.splice(action.index, 1);
 			state = {
@@ -25,4 +25,4 @@ const GetReducer = (
 	return state;
 };
 
-export default GetReducer;
+export default GetCustomersReducer;

@@ -4,7 +4,7 @@ import { ADMIN_BASE_URL, BASE_URL } from "layouts/static/Config";
 
 export function setAll(data) {
 	return {
-		type: "SET_ALL",
+		type: "SET_ALL_PRODUCTS",
 		payload: data
 	};
 }
@@ -23,7 +23,7 @@ export function getAll() {
 
 export function removeSingle(index) {
 	return {
-		type: "REMOVE_SINGLE",
+		type: "REMOVE_SINGLE_PRODUCT",
 		index: index
 	};
 }

@@ -1,14 +1,14 @@
 import { connect } from "react-redux";
-import UpdateOne from "./UpdateOne";
+import UpdateCustomer from "./UpdateCustomer";
 
-import { EditCustomerReducer } from "Reducers/Admin/Customers/UpdateReducer";
+import { UpdateCustomerReducer } from "Reducers/Admin/Customers/UpdateCustomerReducer";
 import { 
 		checkboxClick, 
-		getsingle,
-		setsingle,
+		getSingle,
+		setSingle,
 		updateSingle,
 		deleteSingle
-		} from "Actions/Admin/Customers/UpdateActions";
+		} from "Actions/Admin/Customers/UpdateCustomerActions";
 
 import { withStyles } from "@material-ui/core/styles";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
@@ -25,11 +25,11 @@ const mapDispatchToProps = dispatch => {
 		checkboxClick: (value) => {
 			dispatch(checkboxClick(value));
 		},
-		getsingle: (id) => {
-			dispatch(getsingle(id));
+		getSingle: (id) => {
+			dispatch(getSingle(id));
 		},
-		setsingle: (value) => {
-			dispatch(setsingle(value));
+		setSingle: (value) => {
+			dispatch(setSingle(value));
 		},
 		updateSingle: (value) => {
 			dispatch(updateSingle(value));
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(dashboardStyle)(UpdateOne));
+)(withStyles(dashboardStyle)(UpdateCustomer));

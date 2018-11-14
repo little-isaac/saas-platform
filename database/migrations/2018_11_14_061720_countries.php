@@ -11,8 +11,8 @@ class Countries extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->bigincrements('id');
             $table->string('name');
-            $table->string('country_code');
-            $table->string('phone_prefix');
+            $table->string('country_code')->nullable();
+            $table->string('phone_prefix')->nullable();
             $table->timestamps();
         });
     }

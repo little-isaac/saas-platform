@@ -68,9 +68,13 @@ import InputField from "layouts/static/InputField";
 import CheckboxField from "layouts/static/CheckboxField";
 import SelectField from "layouts/static/SelectField";
 
-class CreateOne extends Component { 
+class CreateCustomer extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const data = this.props.getCountry();
   }
 
   CreateDiv() {
@@ -80,18 +84,18 @@ class CreateOne extends Component {
         <GridContainer>
           <GridItem xs={12} sm={12} md={8}>
             <form onSubmit={handleSubmit(this.props.createSingle)}>
-                  <GridContainer>
-                    <GridItem xs={12} sm={12} md={6}>
-                      <Button type="button" color="danger">
-                        Cancel
-                      </Button>
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={6}>
-                      <Button type="submit" color="primary">
-                        Save
-                      </Button>
-                    </GridItem>
-                  </GridContainer>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                  <Button type="button" color="danger">
+                    Cancel
+                  </Button>
+                </GridItem>
+                <GridItem xs={12} sm={12} md={6}>
+                  <Button type="submit" color="primary">
+                    Save
+                  </Button>
+                </GridItem>
+              </GridContainer>
               <Card>
                 <CardHeader color="primary">
                   <h4 className={classes.cardTitleWhite}>Add customer</h4>
@@ -108,11 +112,7 @@ class CreateOne extends Component {
                         />
                       </FormControl>
                     </GridItem>
-                    <GridItem
-                      xs={12}
-                      sm={12}
-                      md={6}
-                    >
+                    <GridItem xs={12} sm={12} md={6}>
                       <FormControl fullWidth>
                         <Field
                           component={InputField}
@@ -279,10 +279,8 @@ class CreateOne extends Component {
                           component={SelectField}
                           label="Country"
                           name="country"
-                          displayOption={['India','United States','Canada']}
-                          onChange={() =>
-                            this.props.setStateOption()
-                          }
+                          displayOptions={this.props.Address.Countries}
+                          onChange={(event) => {this.props.getState(event.target.value)}}
                         />
                       </FormControl>
                     </GridItem>
@@ -292,7 +290,7 @@ class CreateOne extends Component {
                           component={SelectField}
                           label="State"
                           name="state"
-                          displayOption={['Gujarat','Mumbai']}
+                          displayOptions={this.props.Address.States}
                         />
                       </FormControl>
                     </GridItem>
@@ -302,7 +300,7 @@ class CreateOne extends Component {
                           component={InputField}
                           type="text"
                           label="Zip code"
-                          name="zip_code"
+                          name="zip"
                         />
                       </FormControl>
                     </GridItem>
@@ -329,12 +327,12 @@ class CreateOne extends Component {
   }
 
   render() {
-      return this.CreateDiv();
+    return this.CreateDiv();
   }
 }
 
-CreateOne = reduxForm({
-  form: "CreateOneForm"
-})(CreateOne);
+CreateCustomer = reduxForm({
+  form: "CreateCustomerForm"
+})(CreateCustomer);
 
-export default CreateOne;
+export default CreateCustomer;

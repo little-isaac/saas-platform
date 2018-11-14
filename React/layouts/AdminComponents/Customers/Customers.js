@@ -63,11 +63,9 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 
 import blue from "@material-ui/core/colors/blue";
-import withStyles from "@material-ui/core/styles/withStyles";
-import tableStyle from "assets/jss/material-dashboard-react/components/tableStyle.jsx";
 import Main from "layouts/AdminComponents/Main";
 
-class View extends React.Component {
+class Customers extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -119,6 +117,6 @@ class View extends React.Component {
   }
 }
 
-export default withStyles(tableStyle)(View);
+export default Customers;
 // export default View; 
 

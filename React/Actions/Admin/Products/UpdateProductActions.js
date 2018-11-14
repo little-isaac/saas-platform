@@ -10,7 +10,7 @@ export function checkboxClick(target) {
 
 export function setsingle(data) {
     return {
-        type: "SET_SINGLE",
+        type: "SET_SINGLE_PRODUCT",
         payload: data
     };
 }
@@ -20,10 +20,10 @@ export function getsingle(data_id) {
     return dispatch => {
         Ajax.call({
             method: "GET",
-            url: BASE_URL + "admin/customers/" + data_id + ".json",
+            url: BASE_URL + "admin/products/" + data_id + ".json",
             success: function (result) {
                 if (typeof result.errors == 'undefined') {
-                    dispatch(setsingle(result.customer));
+                    dispatch(setsingle(result.product));
                 }
                 else{
                     

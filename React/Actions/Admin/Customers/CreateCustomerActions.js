@@ -11,7 +11,7 @@ export function checkboxClick(target) {
 export function createSingle(data) {
     return dispatch => {
         data._token = window.Laravel.csrfToken;
-
+debugger;
         Ajax.call({
             method: "POST",
             data: data,

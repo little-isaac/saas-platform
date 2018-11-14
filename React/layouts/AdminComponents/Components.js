@@ -1,10 +1,10 @@
-import ViewCustomers_ from './Customers/ViewContainer';
-import CreateCustomer_ from './Customers/CreateContainer';
-import UpdateCustomer_ from './Customers/UpdateContainer';
+import ViewCustomers_ from './Customers/CustomersContainer';
+import CreateCustomer_ from './Customers/CreateCustomerContainer';
+import UpdateCustomer_ from './Customers/UpdateCustomerContainer';
 
-import ViewProducts_ from './Products/ViewContainer';
-import CreateProduct_ from './Products/CreateContainer';
-import UpdateProduct_ from './Products/UpdateContainer';
+import ViewProducts_ from './Products/ProductsContainer';
+import CreateProduct_ from './Products/CreateProductContainer';
+import UpdateProduct_ from './Products/UpdateProductContainer';
 
 import Dashboard_ from './Dashboard/Dashboard';
 

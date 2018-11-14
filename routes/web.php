@@ -3,8 +3,9 @@
 Route::post('register.json', 'Auth\\RegisterController@findOrCreateUser');
 
 Route::group(['prefix' => 'address'], function () {
+    Route::get('', 'AddressController@test');
     Route::get('country.json', 'AddressController@getCountry');
-    Route::get('{current_country}/state.json', 'AddressController@getState');
+    Route::get('{country_id}/state.json', 'AddressController@getState');
 });
 
 Route::domain('{store_name}.saas-platform.com')->group(function () {

@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import View from "./View";
+import Customers from "./Customers";
 
-import { GetReducer } from "Reducers/Admin/Customers/GetReducer";
-import { getAll, deleteSingle } from "Actions/Admin/Customers/GetActions";
+import { GetCustomersReducer } from "Reducers/Admin/Customers/GetCustomersReducer";
+import { getAll, deleteSingle } from "Actions/Admin/Customers/GetCustomersActions";
 
 import { withStyles } from "@material-ui/core/styles";
 
@@ -11,7 +11,7 @@ import tableStyle from "assets/jss/material-dashboard-react/components/tableStyl
 const mapStateToProps = state => {
 	return {
 		Data: state.GetCustomers
-	};
+	}; 
 };
 
 const mapDispatchToProps = dispatch => {
@@ -28,4 +28,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(tableStyle)(View));
+)(withStyles(tableStyle)(Customers));

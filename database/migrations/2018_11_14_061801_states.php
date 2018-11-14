@@ -6,23 +6,18 @@ use Illuminate\Database\Migrations\Migration;
 
 class States extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        //
+        Schema::create('states', function (Blueprint $table) {
+            $table->bigincrements('id');
+            $table->string('country_id');
+            $table->string('name')->nullable();
+            $table->timestamps();
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        //
+       Schema::dropIfExists('states');
     }
 }

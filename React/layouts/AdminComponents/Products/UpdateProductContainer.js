@@ -1,14 +1,14 @@
 import { connect } from "react-redux";
-import UpdateOne from "./UpdateOne";
+import UpdateProduct from "./UpdateProduct";
 
-import { EditCustomerReducer } from "Reducers/Admin/Products/UpdateReducer";
+import { UpdateProductReducer } from "Reducers/Admin/Products/UpdateProductReducer";
 import { 
 		checkboxClick, 
 		getsingle,
 		setsingle,
 		updateSingle,
 		deleteSingle
-		} from "Actions/Admin/Products/UpdateActions";
+		} from "Actions/Admin/Products/UpdateProductActions";
 
 import { withStyles } from "@material-ui/core/styles";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
@@ -42,4 +42,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(dashboardStyle)(UpdateOne));
+)(withStyles(dashboardStyle)(UpdateProduct));

@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
-import CreateOne from "./CreateOne";
+import CreateProduct from "./CreateProduct";
 
-import { NewCustomerReducer } from "Reducers/Admin/Products/CreateReducer";
+import { CreateProductReducer } from "Reducers/Admin/Products/CreateProductReducer";
 import {
          checkboxClick,
          createSingle
-       } from "Actions/Admin/Products/CreateActions";
+       } from "Actions/Admin/Products/CreateProductActions";
        
 import { withStyles } from "@material-ui/core/styles";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
@@ -30,4 +30,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(dashboardStyle)(CreateOne));
+)(withStyles(dashboardStyle)(CreateProduct));
