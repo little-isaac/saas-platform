@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/var/www/html/Products/saas-platform/React/Actions/Admin/Customers/CreateActions.js</file>
+            <file>file:/var/www/html/Products/saas-platform/React/Actions/Admin/Customers/GetActions.js</file>
+            <file>file:/var/www/html/Products/saas-platform/app/Http/Controllers/Admin/AddressContoller.php</file>
             <file>file:/var/www/html/Products/saas-platform/app/Http/Controllers/Admin/CustomerController.php</file>
             <file>file:/var/www/html/Products/saas-platform/routes/web.php</file>
+            <file>file:/var/www/html/Products/saas-platform/React/layouts/AdminComponents/Customers/CreateOne.js</file>
+            <file>file:/var/www/html/Products/saas-platform/React/Actions/Admin/Products/GetActions.js</file>
+            <file>file:/var/www/html/Products/saas-platform/database/migrations/Store/2018_11_13_083642_addresses.php</file>
         </group>
     </open-files>
 </project-private>

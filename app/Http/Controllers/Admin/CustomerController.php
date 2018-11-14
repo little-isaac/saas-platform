@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Model\Store\Customer;
 use App\Model\Store\Address;
 
 class CustomerController extends Controller {
@@ -50,23 +51,23 @@ class CustomerController extends Controller {
         $customer->save();
 
         
-        $address = new Address();
-        $address->customer_id = $customer->id;
-        $address->first_name = $first_name;
-        $address->last_name = $last_name;
-        $address->company = $company;
-        $address->address1 = $address1;
-        $address->address2 = $address2;
-        $address->city = $city;
-        $address->province = $province;
-        $address->country = $country;
-        $address->zip = $zip;
-        $address->phone = $phone;
-        $address->name = $name;
-        $address->province_code = $province_code;
-        $address->country_code = $country_code;
-        $address->country_name = $country_name;
-        $address->default = $default;
+//        $address = new Address();
+//        $address->customer_id = $customer->id;
+//        $address->first_name = $first_name;
+//        $address->last_name = $last_name;
+//        $address->company = $company;
+//        $address->address1 = $address1;
+//        $address->address2 = $address2;
+//        $address->city = $city;
+//        $address->province = $province;
+//        $address->country = $country;
+//        $address->zip = $zip;
+//        $address->phone = $phone;
+//        $address->name = $name;
+//        $address->province_code = $province_code;
+//        $address->country_code = $country_code;
+//        $address->country_name = $country_name;
+//        $address->default = $default;
 
 
         return [
