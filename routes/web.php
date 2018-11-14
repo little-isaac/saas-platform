@@ -2,6 +2,11 @@
 
 Route::post('register.json', 'Auth\\RegisterController@findOrCreateUser');
 
+Route::group(['prefix' => 'address'], function () {
+    Route::get('country.json', 'AddressController@getCountry');
+    Route::get('{current_country}/state.json', 'AddressController@getState');
+});
+
 Route::domain('{store_name}.saas-platform.com')->group(function () {
     Route::post('login.json', 'Auth\\LoginController@directLogin');
 

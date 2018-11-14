@@ -26,7 +26,7 @@ class CustomerController extends Controller {
         $accepts_marketing = ($request->has('accepts_marketing') && $request->accepts_marketing) ? true : false;
         $tax_exempt = ($request->has('tax_exempt') && $request->tax_exempt) ? true : false;
 
-        $customer = Customer::where($conditions)->get()->first();
+        $customer = Customer::where($conditions)->first();
 
         if (!isset($customer)) {
             $customer = new Customer();
@@ -50,29 +50,61 @@ class CustomerController extends Controller {
         $customer->last_order_name = null;
         $customer->save();
 
-        
-//        $address = new Address();
-//        $address->customer_id = $customer->id;
-//        $address->first_name = $first_name;
-//        $address->last_name = $last_name;
-//        $address->company = $company;
-//        $address->address1 = $address1;
-//        $address->address2 = $address2;
-//        $address->city = $city;
-//        $address->province = $province;
-//        $address->country = $country;
-//        $address->zip = $zip;
-//        $address->phone = $phone;
-//        $address->name = $name;
-//        $address->province_code = $province_code;
-//        $address->country_code = $country_code;
-//        $address->country_name = $country_name;
-//        $address->default = $default;
+        $customer_id = $customer->id;
 
+        $this->add_default_address($customer_id, $request);
 
         return [
             'customer' => $customer
         ];
+    }
+
+    function add_default_address($customer_id, $request) {
+
+        $conditions = [
+            ['customer_id', '=', $customer_id],
+            ['default', '=', true]
+        ];
+
+        $address = Address::where($conditions)->first();
+
+        if (!isset($address)) {
+            $address = new Address();
+        }
+
+        $address_first_name = $request->has('first_name') ? $request->first_name : null;
+        $address_last_name = $request->has('last_name') ? $request->last_name : null;
+        $company = $request->has('email') ? $request->email : null;
+        $address1 = $request->has('phone') ? $request->phone : null;
+        $address2 = $request->has('phone') ? $request->phone : null;
+        $city = $request->has('phone') ? $request->phone : null;
+        $province = $request->has('phone') ? $request->phone : null;
+        $country = $request->has('phone') ? $request->phone : null;
+        $zip = $request->has('phone') ? $request->phone : null;
+        $address_phone = $request->has('phone') ? $request->phone : null;
+        $name = $request->has('phone') ? $request->phone : null;
+        $province_code = $request->has('phone') ? $request->phone : null;
+        $country_code = $request->has('phone') ? $request->phone : null;
+        $country_name = $request->has('phone') ? $request->phone : null;
+        $is_default_address = ($request->has('is_default_address') && $request->is_default_address) ? true : false;
+
+        $address->customer_id = $customer_id;
+        $address->first_name = $address_first_name;
+        $address->last_name = $address_last_name;
+        $address->company = $company;
+        $address->address1 = $address1;
+        $address->address2 = $address2;
+        $address->city = $city;
+        $address->province = $province;
+        $address->country = $country;
+        $address->zip = $zip;
+        $address->phone = $address_phone;
+        $address->name = $name;
+        $address->province_code = $province_code;
+        $address->country_code = $country_code;
+        $address->country_name = $country_name;
+        $address->default = $is_default_address;
+        $address->save();
     }
 
     function getAll(Request $request) {

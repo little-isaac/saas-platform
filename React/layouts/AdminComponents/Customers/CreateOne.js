@@ -66,6 +66,7 @@ import Main from "layouts/AdminComponents/Main";
 
 import InputField from "layouts/static/InputField";
 import CheckboxField from "layouts/static/CheckboxField";
+import SelectField from "layouts/static/SelectField";
 
 class CreateOne extends Component { 
   constructor(props) {
@@ -275,20 +276,23 @@ class CreateOne extends Component {
                     <GridItem xs={12} sm={12} md={4}>
                       <FormControl fullWidth>
                         <Field
-                          component={InputField}
-                          type="text"
+                          component={SelectField}
                           label="Country"
                           name="country"
+                          displayOption={['India','United States','Canada']}
+                          onChange={() =>
+                            this.props.setStateOption()
+                          }
                         />
                       </FormControl>
                     </GridItem>
                     <GridItem xs={12} sm={12} md={4}>
                       <FormControl fullWidth>
                         <Field
-                          component={InputField}
-                          type="text"
+                          component={SelectField}
                           label="State"
                           name="state"
+                          displayOption={['Gujarat','Mumbai']}
                         />
                       </FormControl>
                     </GridItem>
