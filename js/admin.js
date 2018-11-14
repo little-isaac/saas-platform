@@ -114298,6 +114298,10 @@ var _CheckboxField = __webpack_require__(327);
 
 var _CheckboxField2 = _interopRequireDefault(_CheckboxField);
 
+var _SelectField = __webpack_require__(1904);
+
+var _SelectField2 = _interopRequireDefault(_SelectField);
+
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
@@ -114431,15 +114435,18 @@ var CreateOne = function (_Component) {
         name: "city",
         type: "text"
       })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 4 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
-        component: _InputField2.default,
-        type: "text",
+        component: _SelectField2.default,
         label: "Country",
-        name: "country"
+        name: "country",
+        displayOption: ['India', 'United States', 'Canada'],
+        onChange: function onChange() {
+          return _this2.props.setStateOption();
+        }
       }))), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 4 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
-        component: _InputField2.default,
-        type: "text",
+        component: _SelectField2.default,
         label: "State",
-        name: "state"
+        name: "state",
+        displayOption: ['Gujarat', 'Mumbai']
       }))), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 4 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
         component: _InputField2.default,
         type: "text",
@@ -116730,6 +116737,64 @@ var rootReducer = (0, _redux.combineReducers)({
 });
 
 exports.default = (0, _redux.createStore)(rootReducer, {}, (0, _redux.applyMiddleware)(logger, _reduxThunk2.default));
+
+/***/ }),
+/* 1899 */,
+/* 1900 */,
+/* 1901 */,
+/* 1902 */,
+/* 1903 */,
+/* 1904 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }return target;
+};
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(67);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+  }return target;
+}
+
+var SelectField = function SelectField(_ref) {
+  var input = _ref.input,
+      label = _ref.label,
+      displayOption = _ref.displayOption,
+      _ref$meta = _ref.meta,
+      touched = _ref$meta.touched,
+      error = _ref$meta.error,
+      custom = _objectWithoutProperties(_ref, ["input", "label", "displayOption", "meta"]);
+
+  return _react2.default.createElement(_react2.default.Fragment, null, _react2.default.createElement(_core.InputLabel, null, label), _react2.default.createElement(_core.Select, _extends({}, input, custom), displayOption.map(function (prop, key) {
+    return _react2.default.createElement(_core.MenuItem, { key: key, value: prop }, prop);
+  })));
+};
+
+exports.default = SelectField;
 
 /***/ })
 /******/ ]);
