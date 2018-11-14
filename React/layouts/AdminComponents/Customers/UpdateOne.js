@@ -98,7 +98,7 @@ class UpdateOne extends Component {
                           type="text"
                           label="First Name"
                           name="first_name"
-                          value={this.props.Data.customer.first_name}
+                          
                         />
                       </FormControl>
                     </GridItem>
@@ -114,7 +114,7 @@ class UpdateOne extends Component {
                           type="text"
                           label="Last Name"
                           name="last_name"
-                          value={this.props.Data.customer.last_name}
+                          
                         />
                       </FormControl>
                     </GridItem>
@@ -128,7 +128,7 @@ class UpdateOne extends Component {
                           label="Email"
                           name="email"
                           type="text"
-                          value={this.props.Data.customer.email}
+                          
                         />
                       </FormControl>
                     </GridItem>
@@ -141,7 +141,7 @@ class UpdateOne extends Component {
                           label="Phone Number"
                           name="phone_number"
                           type="text"
-                          value={this.props.Data.customer.phone}
+                          
                         />
                       </FormControl>
                     </GridItem>
@@ -224,7 +224,8 @@ class UpdateOne extends Component {
 }
 
 UpdateOne = reduxForm({
-  form: "UpdateOneForm"
+  form: "UpdateOneForm",
+  enableReinitialize: true
 })(UpdateOne);
 
 export default UpdateOne;

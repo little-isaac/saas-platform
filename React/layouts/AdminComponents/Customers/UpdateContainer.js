@@ -15,6 +15,7 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 
 const mapStateToProps = state => {
 	return {
+		initialValues:state.UpdateCustomer.customer,
 		Data: state.UpdateCustomer
 	};
 };

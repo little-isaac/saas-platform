@@ -3,7 +3,8 @@ const UpdateReducer = (
         customers: "",
         customer: {},
         accepts_marketing: false,
-        tax_exempt: false
+        tax_exempt: false,
+        is_shrink:{}
     },
     action
 ) => {
@@ -26,7 +27,7 @@ const UpdateReducer = (
                 ...state,
                 customer: customer,
                 accepts_marketing: (customer.accepts_marketing) ? true : false,
-                tax_exempt: (customer.tax_exempt) ? true : false
+                tax_exempt: (customer.tax_exempt) ? true : false,
             };
             break;
     }
