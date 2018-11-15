@@ -68,23 +68,23 @@ import Main from "layouts/AdminComponents/Main";
 import InputField from "layouts/static/InputField";
 import CheckboxField from "layouts/static/CheckboxField";
 
-class UpdateOne extends Component {
+class UpdateProduct extends Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    var data_id = this.props.match.params.id;
-    const data = this.props.getsingle(data_id);
+    var product_id = this.props.match.params.id;
+    const product_data = this.props.getProduct(product_id);
   }
 
-  UpdateDiv() {
+  UpdateProductDiv() {
     const { classes, handleSubmit, ...other } = this.props;
     return (
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={8}>
-            <form onSubmit={handleSubmit(this.props.updateSingle)}>
+            <form onSubmit={handleSubmit(this.props.updateProduct)}>
               <Card>
                 <CardHeader color="primary">
                   <h4 className={classes.cardTitleWhite}>Edit product</h4>
@@ -167,12 +167,13 @@ class UpdateOne extends Component {
   }
 
   render() {
-    return this.UpdateDiv();
+    return this.UpdateProductDiv();
   }
 }
 
-UpdateOne = reduxForm({
-  form: "UpdateOneForm"
-})(UpdateOne);
+UpdateProduct = reduxForm({
+  form: "UpdateProductForm",
+  enableReinitialize: true
+})(UpdateProduct);
 
-export default UpdateOne;
+export default UpdateProduct;

@@ -63,17 +63,15 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 
 import blue from "@material-ui/core/colors/blue";
-import withStyles from "@material-ui/core/styles/withStyles";
-import tableStyle from "assets/jss/material-dashboard-react/components/tableStyle.jsx";
 import Main from "layouts/AdminComponents/Main";
 
-class View extends React.Component {
+class Products extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    const data = this.props.getAll(); 
+    const data = this.props.getProducts(); 
   }
 
   render() {
@@ -105,7 +103,7 @@ class View extends React.Component {
                           to={"products/" + product["id"]}
                           label="Edit"
                         />
-                        <Button color="danger" onClick={() => this.props.deleteSingle(product["id"],key)}>Delete</Button>
+                        <Button color="danger" onClick={() => this.props.deleteProduct(product["id"],key)}>Delete</Button>
                       </TableCell>
                     </TableRow>
                   );
@@ -119,6 +117,6 @@ class View extends React.Component {
   }
 }
 
-export default withStyles(tableStyle)(View);
+export default Products;
 // export default View; 
 

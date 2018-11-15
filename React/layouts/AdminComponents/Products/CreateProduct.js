@@ -67,18 +67,30 @@ import Main from "layouts/AdminComponents/Main";
 import InputField from "layouts/static/InputField";
 import CheckboxField from "layouts/static/CheckboxField";
 
-class CreateOne extends Component { 
+class CreateProduct extends Component {
   constructor(props) {
-    super(props);
+   super(props);
   }
 
-  CreateDiv() {
+  CreateProductDiv() {
     const { classes, handleSubmit, ...other } = this.props;
     return (
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={8}>
-            <form onSubmit={handleSubmit(this.props.createSingle)}>
+            <form onSubmit={handleSubmit(this.props.createProduct)}>
+            <GridContainer>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <Button type="button" color="danger">
+                        Cancel
+                      </Button>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <Button type="submit" color="primary">
+                        Save
+                      </Button>
+                    </GridItem>
+                  </GridContainer>
               <Card>
                 <CardHeader color="primary">
                   <h4 className={classes.cardTitleWhite}>Add product</h4>
@@ -87,7 +99,7 @@ class CreateOne extends Component {
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
                       <FormControl fullWidth>
-                        <Field 
+                        <Field
                           component={InputField}
                           type="text"
                           label="Title"
@@ -132,21 +144,140 @@ class CreateOne extends Component {
                       </FormControl>
                     </GridItem>
                   </GridContainer>
-                </CardBody>
-                <CardFooter>
-                  <GridContainer>
-                    <GridItem xs={12} sm={12} md={6}>
-                      <Button type="button" color="danger">
-                        Cancel
-                      </Button>
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={6}>
-                      <Button type="submit" color="primary">
-                        Save
-                      </Button>
+                  <GridContainer >
+                    <GridItem xs={12} sm={12} md={12}>
+                      <FormControl fullWidth>
+                        <input
+                          type="file"
+                          accept=".jpg, .png, .jpeg"
+                        />
+                      </FormControl>
                     </GridItem>
                   </GridContainer>
-                </CardFooter>
+
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          type="text"
+                          label="Price"
+                          name="price"
+                        />
+                      </FormControl>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="Compare at price"
+                          name="compare_at_price"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          type="text"
+                          label="Cost per item"
+                          name="cost_per_item"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={CheckboxField}
+                          label="Charge taxes on this product"
+                          color="primary"
+                          name="is_taxable"
+                          value={
+                            this.props.ProductData.is_taxable
+                              ? new String("on")
+                              : new String("off")
+                          }
+                          checked={this.props.ProductData.is_taxable}
+                          onChange={() =>
+                            this.props.checkboxClick("IS_TAXABLE")
+                          }
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  
+
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="SKU (stock keeping unit)"
+                          name="sku"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="Barcode (ISBN, UPC, GTIN, etc.)"
+                          name="barcode"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="Inventory policy"
+                          name="inventory_policy"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={6}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={InputField}
+                          label="Quantity"
+                          name="quantity"
+                          type="text"
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <FormControl fullWidth>
+                        <Field
+                          component={CheckboxField}
+                          label="This is a physical product"
+                          color="primary"
+                          name="is_shipping_require"
+                          value={
+                            this.props.ProductData.is_shipping_require
+                              ? new String("on")
+                              : new String("off")
+                          }
+                          checked={this.props.ProductData.is_shipping_require}
+                          onChange={() =>
+                            this.props.checkboxClick("IS_SHIPPING_REQUIRE")
+                          }
+                        />
+                      </FormControl>
+                    </GridItem>
+                  </GridContainer>
+                </CardBody>
               </Card>
             </form>
           </GridItem>
@@ -156,12 +287,12 @@ class CreateOne extends Component {
   }
 
   render() {
-      return this.CreateDiv();
+    return this.CreateProductDiv();
   }
 }
 
-CreateOne = reduxForm({
-  form: "CreateOneForm"
-})(CreateOne);
+CreateProduct = reduxForm({
+  form: "CreateProductForm"
+})(CreateProduct);
 
-export default CreateOne;
+export default CreateProduct;

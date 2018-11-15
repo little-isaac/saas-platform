@@ -84,13 +84,13 @@ class Customers extends React.Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                {this.props.Data.TableHeader.map((prop, key) => {
+                {this.props.CustomersData.TableHeader.map((prop, key) => {
                   return <TableCell key={key}>{prop}</TableCell>;
                 })}
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.props.Data.TableData.data.map(
+              {this.props.CustomersData.TableData.data.map(
                 (customer, key) => {
                   return (
                     <TableRow key={key}>

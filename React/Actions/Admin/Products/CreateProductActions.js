@@ -8,7 +8,7 @@ export function checkboxClick(target) {
     };
 }
 
-export function createSingle(data) {
+export function createProduct(data) {
     return dispatch => {
         data._token = window.Laravel.csrfToken;
 
@@ -17,11 +17,7 @@ export function createSingle(data) {
             data: data,
             url: BASE_URL + "admin/products/create.json",
             success: function (result) {
-                if (result.is_new) {
-                    location.href = "" + result.product.id;
-                } else {
-                    location.href = "./";
-                }
+                location.href = "" + result.product.id;
             }
         });
     };

@@ -24,7 +24,6 @@ class Customers extends Migration
             $table->string('multipass_identifier')->nullable();
             $table->boolean('tax_exempt')->default(false)->nullable();
             $table->string('phone')->nullable();
-            $table->string('tags')->nullable();
             $table->string('last_order_name')->nullable();
             $table->rememberToken();
             $table->timestamps();

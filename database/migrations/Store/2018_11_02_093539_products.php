@@ -16,7 +16,6 @@ class Products extends Migration
             $table->string('product_type')->nullable();
             $table->string('handle');
             $table->string('template_suffix')->nullable();
-            $table->string('tags')->nullable();
             $table->string('published_scope')->nullable();
             $table->string('published_at')->nullable();
             $table->timestamps();

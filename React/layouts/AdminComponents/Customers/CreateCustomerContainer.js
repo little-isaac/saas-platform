@@ -17,7 +17,7 @@ const mapStateToProps = state => {
 	console.log(state.GetAddress);
 	return {
 		Address: state.GetAddress,
-		Data: state.CreateCustomer
+		CustomerData: state.CreateCustomer
 	};
 };
 

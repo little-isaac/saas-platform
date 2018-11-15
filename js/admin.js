@@ -15624,6 +15624,9 @@ var dashboardStyle = {
       fontWeight: "400",
       lineHeight: "1"
     }
+  },
+  marginTop20: {
+    marginTop: "20px"
   }
 };
 
@@ -113224,7 +113227,7 @@ var GetProductsReducer = function GetProductsReducer() {
 				TableData: action.payload
 			});
 			break;
-		case "REMOVE_SINGLE_PRODUCT":
+		case "REMOVE_PRODUCT":
 			var all_data = state.TableData;
 			all_data.data.splice(action.index, 1);
 			state = _extends({}, state, {
@@ -113262,20 +113265,20 @@ var CreateProductReducer = function CreateProductReducer() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
         products: "",
         product: "",
-        accepts_marketing: false,
-        tax_exempt: false
+        is_taxable: false,
+        is_shipping_require: false
     };
     var action = arguments[1];
 
     switch (action.type) {
-        case "ACCEPTS_MARKETING":
+        case "IS_TAXABLE":
             state = _extends({}, state, {
-                accepts_marketing: !state.accepts_marketing
+                is_taxable: !state.is_taxable
             });
             break;
-        case "TAX_EXEMPT":
+        case "IS_SHIPPING_REQUIRE":
             state = _extends({}, state, {
-                tax_exempt: !state.tax_exempt
+                is_shipping_require: !state.is_shipping_require
             });
             break;
     }
@@ -113315,7 +113318,7 @@ var UpdateProductReducer = function UpdateProductReducer() {
     var action = arguments[1];
 
     switch (action.type) {
-        case "SET_SINGLE_PRODUCT":
+        case "SET_PRODUCT":
             var product = action.payload;
             state = _extends({}, state, {
                 product: product,
@@ -113652,7 +113655,7 @@ function _interopRequireDefault(obj) {
 
 var mapStateToProps = function mapStateToProps(state) {
 	return {
-		Data: state.GetCustomers
+		CustomersData: state.GetCustomers
 	};
 };
 
@@ -113852,9 +113855,9 @@ var Customers = function (_React$Component) {
           classes = _props.classes,
           other = _objectWithoutProperties(_props, ["classes"]);
 
-      return _react2.default.createElement("div", null, _react2.default.createElement("h3", null, "Customers"), _react2.default.createElement(_ButtonLink2.default, { color: "primary", to: "customers/new", label: "Add customer" }), _react2.default.createElement("div", { className: classes.tableResponsive }, _react2.default.createElement(_Table2.default, { className: classes.table }, _react2.default.createElement(_TableHead2.default, null, _react2.default.createElement(_TableRow2.default, null, this.props.Data.TableHeader.map(function (prop, key) {
+      return _react2.default.createElement("div", null, _react2.default.createElement("h3", null, "Customers"), _react2.default.createElement(_ButtonLink2.default, { color: "primary", to: "customers/new", label: "Add customer" }), _react2.default.createElement("div", { className: classes.tableResponsive }, _react2.default.createElement(_Table2.default, { className: classes.table }, _react2.default.createElement(_TableHead2.default, null, _react2.default.createElement(_TableRow2.default, null, this.props.CustomersData.TableHeader.map(function (prop, key) {
         return _react2.default.createElement(_TableCell2.default, { key: key }, prop);
-      }))), _react2.default.createElement(_TableBody2.default, null, this.props.Data.TableData.data.map(function (customer, key) {
+      }))), _react2.default.createElement(_TableBody2.default, null, this.props.CustomersData.TableData.data.map(function (customer, key) {
         return _react2.default.createElement(_TableRow2.default, { key: key }, _react2.default.createElement(_TableCell2.default, null, customer["first_name"]), _react2.default.createElement(_TableCell2.default, null, customer["last_name"]), _react2.default.createElement(_TableCell2.default, null, customer["email"]), _react2.default.createElement(_TableCell2.default, null, _react2.default.createElement(_ButtonLink2.default, {
           color: "primary",
           to: "customers/" + customer["id"],
@@ -114324,7 +114327,7 @@ var mapStateToProps = function mapStateToProps(state) {
 	console.log(state.GetAddress);
 	return {
 		Address: state.GetAddress,
-		Data: state.CreateCustomer
+		CustomerData: state.CreateCustomer
 	};
 };
 
@@ -114523,8 +114526,8 @@ var CreateCustomer = function (_Component) {
       var country_data = this.props.getCountry();
     }
   }, {
-    key: "CreateDiv",
-    value: function CreateDiv() {
+    key: "CreateCustomerDiv",
+    value: function CreateCustomerDiv() {
       var _this2 = this;
 
       var _props = this.props,
@@ -114557,8 +114560,8 @@ var CreateCustomer = function (_Component) {
         label: "Customer accepts marketing",
         color: "primary",
         name: "accepts_marketing",
-        value: this.props.Data.accepts_marketing ? new String("on") : new String("off"),
-        checked: this.props.Data.accepts_marketing,
+        value: this.props.CustomerData.accepts_marketing ? new String("on") : new String("off"),
+        checked: this.props.CustomerData.accepts_marketing,
         onChange: function onChange() {
           return _this2.props.checkboxClick("ACCEPTS_MARKETING");
         }
@@ -114567,8 +114570,8 @@ var CreateCustomer = function (_Component) {
         label: "Customer is tax exempt",
         color: "primary",
         name: "tax_exempt",
-        value: this.props.Data.tax_exempt ? new String("on") : new String("off"),
-        checked: this.props.Data.tax_exempt,
+        value: this.props.CustomerData.tax_exempt ? new String("on") : new String("off"),
+        checked: this.props.CustomerData.tax_exempt,
         onChange: function onChange() {
           return _this2.props.checkboxClick("TAX_EXEMPT");
         }
@@ -114634,7 +114637,7 @@ var CreateCustomer = function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return this.CreateDiv();
+      return this.CreateCustomerDiv();
     }
   }]);
 
@@ -114726,7 +114729,7 @@ var mapStateToProps = function mapStateToProps(state) {
 	return {
 		Address: state.GetAddress,
 		initialValues: state.UpdateCustomer.customer,
-		Data: state.UpdateCustomer
+		CustomerData: state.UpdateCustomer
 	};
 };
 
@@ -114941,8 +114944,8 @@ var UpdateCustomer = function (_Component) {
       var country_data = this.props.getCountry();
     }
   }, {
-    key: "UpdateDiv",
-    value: function UpdateDiv() {
+    key: "UpdateCustomerDiv",
+    value: function UpdateCustomerDiv() {
       var _this2 = this;
 
       var _props = this.props,
@@ -114983,8 +114986,8 @@ var UpdateCustomer = function (_Component) {
         label: "Customer accepts marketing",
         color: "primary",
         name: "accepts_marketing",
-        value: this.props.Data.accepts_marketing ? new String("on") : new String("off"),
-        checked: this.props.Data.accepts_marketing,
+        value: this.props.CustomerData.accepts_marketing ? new String("on") : new String("off"),
+        checked: this.props.CustomerData.accepts_marketing,
         onChange: function onChange() {
           return _this2.props.checkboxClick("ACCEPTS_MARKETING");
         }
@@ -114993,8 +114996,8 @@ var UpdateCustomer = function (_Component) {
         label: "Customer is tax exempt",
         color: "primary",
         name: "tax_exempt",
-        value: this.props.Data.tax_exempt ? new String("on") : new String("off"),
-        checked: this.props.Data.tax_exempt,
+        value: this.props.CustomerData.tax_exempt ? new String("on") : new String("off"),
+        checked: this.props.CustomerData.tax_exempt,
         onChange: function onChange() {
           return _this2.props.checkboxClick("TAX_EXEMPT");
         }
@@ -115056,14 +115059,14 @@ var UpdateCustomer = function (_Component) {
         name: "default_address.phone",
         type: "text"
       }))))))))), _react2.default.createElement(_Button2.default, { onClick: this.props.OpenAddressDialog }, "Open dialog"), _react2.default.createElement(_core.Dialog, {
-        open: this.props.Data.OpenAddressDialog,
+        open: this.props.CustomerData.OpenAddressDialog,
         onClose: this.props.CloseAddressDialog
       }, _react2.default.createElement(_core.DialogTitle, null, "Title"), _react2.default.createElement(_core.DialogContent, null, _react2.default.createElement(_core.DialogContentText, null, "Content")), _react2.default.createElement(_core.DialogActions, null, _react2.default.createElement(_Button2.default, { onClick: this.props.OpenAddressDialog, color: "primary" }, "Disagree"), _react2.default.createElement(_Button2.default, { onClick: this.props.CloseAddressDialog, color: "primary", autoFocus: true }, "Agree"))));
     }
   }, {
     key: "render",
     value: function render() {
-      return this.UpdateDiv();
+      return this.UpdateCustomerDiv();
     }
   }]);
 
@@ -115214,11 +115217,11 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	return {
-		getAll: function getAll() {
-			dispatch((0, _GetProductsActions.getAll)());
+		getProducts: function getProducts() {
+			dispatch((0, _GetProductsActions.getProducts)());
 		},
-		deleteSingle: function deleteSingle(data_id, index) {
-			dispatch((0, _GetProductsActions.deleteSingle)(data_id, index));
+		deleteProduct: function deleteProduct(data_id, index) {
+			dispatch((0, _GetProductsActions.deleteProduct)(data_id, index));
 		}
 	};
 };
@@ -115348,14 +115351,6 @@ var _blue = __webpack_require__(68);
 
 var _blue2 = _interopRequireDefault(_blue);
 
-var _withStyles = __webpack_require__(7);
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
-var _tableStyle = __webpack_require__(325);
-
-var _tableStyle2 = _interopRequireDefault(_tableStyle);
-
 var _Main = __webpack_require__(192);
 
 var _Main2 = _interopRequireDefault(_Main);
@@ -115393,19 +115388,19 @@ function _inherits(subClass, superClass) {
 // @material-ui/icons
 
 
-var View = function (_React$Component) {
-  _inherits(View, _React$Component);
+var Products = function (_React$Component) {
+  _inherits(Products, _React$Component);
 
-  function View(props) {
-    _classCallCheck(this, View);
+  function Products(props) {
+    _classCallCheck(this, Products);
 
-    return _possibleConstructorReturn(this, (View.__proto__ || Object.getPrototypeOf(View)).call(this, props));
+    return _possibleConstructorReturn(this, (Products.__proto__ || Object.getPrototypeOf(Products)).call(this, props));
   }
 
-  _createClass(View, [{
+  _createClass(Products, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var data = this.props.getAll();
+      var data = this.props.getProducts();
     }
   }, {
     key: "render",
@@ -115424,16 +115419,16 @@ var View = function (_React$Component) {
           to: "products/" + product["id"],
           label: "Edit"
         }), _react2.default.createElement(_Button2.default, { color: "danger", onClick: function onClick() {
-            return _this2.props.deleteSingle(product["id"], key);
+            return _this2.props.deleteProduct(product["id"], key);
           } }, "Delete")));
       })))));
     }
   }]);
 
-  return View;
+  return Products;
 }(_react2.default.Component);
 
-exports.default = (0, _withStyles2.default)(_tableStyle2.default)(View);
+exports.default = Products;
 // export default View;
 
 /***/ }),
@@ -115446,10 +115441,10 @@ exports.default = (0, _withStyles2.default)(_tableStyle2.default)(View);
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.setAll = setAll;
-exports.getAll = getAll;
-exports.removeSingle = removeSingle;
-exports.deleteSingle = deleteSingle;
+exports.setProducts = setProducts;
+exports.getProducts = getProducts;
+exports.removeProduct = removeProduct;
+exports.deleteProduct = deleteProduct;
 
 var _reduxForm = __webpack_require__(33);
 
@@ -115457,33 +115452,33 @@ var _Ajax = __webpack_require__(90);
 
 var _Config = __webpack_require__(49);
 
-function setAll(data) {
+function setProducts(data) {
 	return {
 		type: "SET_ALL_PRODUCTS",
 		payload: data
 	};
 }
 
-function getAll() {
+function getProducts() {
 	return function (dispatch) {
 		_Ajax.Ajax.call({
 			method: "GET",
 			url: _Config.BASE_URL + "admin/products.json",
 			success: function success(result) {
-				dispatch(setAll(result));
+				dispatch(setProducts(result));
 			}
 		});
 	};
 }
 
-function removeSingle(index) {
+function removeProduct(index) {
 	return {
-		type: "REMOVE_SINGLE_PRODUCT",
+		type: "REMOVE_PRODUCT",
 		index: index
 	};
 }
 
-function deleteSingle(data_id, index) {
+function deleteProduct(data_id, index) {
 	return function (dispatch) {
 		var values = {};
 		values._token = window.Laravel.csrfToken;
@@ -115493,7 +115488,7 @@ function deleteSingle(data_id, index) {
 			url: _Config.BASE_URL + "admin/products/" + data_id + ".json",
 			success: function success(result) {
 				if (result.status) {
-					dispatch(removeSingle(index));
+					dispatch(removeProduct(index));
 				}
 			}
 		});
@@ -115532,18 +115527,16 @@ function _interopRequireDefault(obj) {
 }
 
 var mapStateToProps = function mapStateToProps(state) {
+	debugger;
 	return {
-		Data: state.CreateCustomer
+		ProductData: state.createProduct
 	};
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	return {
-		checkboxClick: function checkboxClick(value) {
-			dispatch((0, _CreateProductActions.checkboxClick)(value));
-		},
-		createSingle: function createSingle(values) {
-			dispatch((0, _CreateProductActions.createSingle)(values));
+		createProduct: function createProduct(values) {
+			dispatch((0, _CreateProductActions.createProduct)(values));
 		}
 	};
 };
@@ -115707,24 +115700,26 @@ function _inherits(subClass, superClass) {
 // @material-ui/icons
 
 
-var CreateOne = function (_Component) {
-  _inherits(CreateOne, _Component);
+var CreateProduct = function (_Component) {
+  _inherits(CreateProduct, _Component);
 
-  function CreateOne(props) {
-    _classCallCheck(this, CreateOne);
+  function CreateProduct(props) {
+    _classCallCheck(this, CreateProduct);
 
-    return _possibleConstructorReturn(this, (CreateOne.__proto__ || Object.getPrototypeOf(CreateOne)).call(this, props));
+    return _possibleConstructorReturn(this, (CreateProduct.__proto__ || Object.getPrototypeOf(CreateProduct)).call(this, props));
   }
 
-  _createClass(CreateOne, [{
-    key: "CreateDiv",
-    value: function CreateDiv() {
+  _createClass(CreateProduct, [{
+    key: "CreateProductDiv",
+    value: function CreateProductDiv() {
+      var _this2 = this;
+
       var _props = this.props,
           classes = _props.classes,
           handleSubmit = _props.handleSubmit,
           other = _objectWithoutProperties(_props, ["classes", "handleSubmit"]);
 
-      return _react2.default.createElement("div", null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 8 }, _react2.default.createElement("form", { onSubmit: handleSubmit(this.props.createSingle) }, _react2.default.createElement(_Card2.default, null, _react2.default.createElement(_CardHeader2.default, { color: "primary" }, _react2.default.createElement("h4", { className: classes.cardTitleWhite }, "Add product")), _react2.default.createElement(_CardBody2.default, null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+      return _react2.default.createElement("div", null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 8 }, _react2.default.createElement("form", { onSubmit: handleSubmit(this.props.createProduct) }, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "button", color: "danger" }, "Cancel")), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "submit", color: "primary" }, "Save"))), _react2.default.createElement(_Card2.default, null, _react2.default.createElement(_CardHeader2.default, { color: "primary" }, _react2.default.createElement("h4", { className: classes.cardTitleWhite }, "Add product")), _react2.default.createElement(_CardBody2.default, null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
         component: _InputField2.default,
         type: "text",
         label: "Title",
@@ -115744,23 +115739,81 @@ var CreateOne = function (_Component) {
         label: "Vendor",
         name: "vendor",
         type: "text"
-      }))))), _react2.default.createElement(_CardFooter2.default, null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "button", color: "danger" }, "Cancel")), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_Button2.default, { type: "submit", color: "primary" }, "Save")))))))));
+      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement("input", {
+        type: "file",
+        accept: ".jpg, .png, .jpeg"
+      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _InputField2.default,
+        type: "text",
+        label: "Price",
+        name: "price"
+      }))), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _InputField2.default,
+        label: "Compare at price",
+        name: "compare_at_price",
+        type: "text"
+      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _InputField2.default,
+        type: "text",
+        label: "Cost per item",
+        name: "cost_per_item"
+      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _CheckboxField2.default,
+        label: "Charge taxes on this product",
+        color: "primary",
+        name: "is_taxable",
+        value: this.props.ProductData.is_taxable ? new String("on") : new String("off"),
+        checked: this.props.ProductData.is_taxable,
+        onChange: function onChange() {
+          return _this2.props.checkboxClick("IS_TAXABLE");
+        }
+      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _InputField2.default,
+        label: "SKU (stock keeping unit)",
+        name: "sku",
+        type: "text"
+      }))), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _InputField2.default,
+        label: "Barcode (ISBN, UPC, GTIN, etc.)",
+        name: "barcode",
+        type: "text"
+      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _InputField2.default,
+        label: "Inventory policy",
+        name: "inventory_policy",
+        type: "text"
+      }))), _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 6 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _InputField2.default,
+        label: "Quantity",
+        name: "quantity",
+        type: "text"
+      })))), _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+        component: _CheckboxField2.default,
+        label: "This is a physical product",
+        color: "primary",
+        name: "is_shipping_require",
+        value: this.props.ProductData.is_shipping_require ? new String("on") : new String("off"),
+        checked: this.props.ProductData.is_shipping_require,
+        onChange: function onChange() {
+          return _this2.props.checkboxClick("IS_SHIPPING_REQUIRE");
+        }
+      }))))))))));
     }
   }, {
     key: "render",
     value: function render() {
-      return this.CreateDiv();
+      return this.CreateProductDiv();
     }
   }]);
 
-  return CreateOne;
+  return CreateProduct;
 }(_react.Component);
 
-CreateOne = (0, _reduxForm.reduxForm)({
-  form: "CreateOneForm"
-})(CreateOne);
+CreateProduct = (0, _reduxForm.reduxForm)({
+  form: "CreateProductForm"
+})(CreateProduct);
 
-exports.default = CreateOne;
+exports.default = CreateProduct;
 
 /***/ }),
 /* 1893 */
@@ -115773,7 +115826,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.checkboxClick = checkboxClick;
-exports.createSingle = createSingle;
+exports.createProduct = createProduct;
 
 var _reduxForm = __webpack_require__(33);
 
@@ -115787,7 +115840,7 @@ function checkboxClick(target) {
     };
 }
 
-function createSingle(data) {
+function createProduct(data) {
     return function (dispatch) {
         data._token = window.Laravel.csrfToken;
 
@@ -115796,11 +115849,7 @@ function createSingle(data) {
             data: data,
             url: _Config.BASE_URL + "admin/products/create.json",
             success: function success(result) {
-                if (result.is_new) {
-                    location.href = "" + result.product.id;
-                } else {
-                    location.href = "./";
-                }
+                location.href = "" + result.product.id;
             }
         });
     };
@@ -115839,26 +115888,24 @@ function _interopRequireDefault(obj) {
 
 var mapStateToProps = function mapStateToProps(state) {
 	return {
-		Data: state.UpdateCustomer
+		initialValues: state.UpdateProduct.product,
+		Data: state.UpdateProduct
 	};
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	return {
-		checkboxClick: function checkboxClick(value) {
-			dispatch((0, _UpdateProductActions.checkboxClick)(value));
+		getProduct: function getProduct(id) {
+			dispatch((0, _UpdateProductActions.getProduct)(id));
 		},
-		getsingle: function getsingle(id) {
-			dispatch((0, _UpdateProductActions.getsingle)(id));
+		setProduct: function setProduct(value) {
+			dispatch((0, _UpdateProductActions.setProduct)(value));
 		},
-		setsingle: function setsingle(value) {
-			dispatch((0, _UpdateProductActions.setsingle)(value));
+		updateProduct: function updateProduct(value) {
+			dispatch((0, _UpdateProductActions.updateProduct)(value));
 		},
-		updateSingle: function updateSingle(value) {
-			dispatch((0, _UpdateProductActions.updateSingle)(value));
-		},
-		deleteSingle: function deleteSingle(id) {
-			dispatch((0, _UpdateProductActions.deleteSingle)(id));
+		deleteProduct: function deleteProduct(id) {
+			dispatch((0, _UpdateProductActions.deleteProduct)(id));
 		}
 	};
 };
@@ -116021,30 +116068,30 @@ function _inherits(subClass, superClass) {
 // @material-ui/icons
 
 
-var UpdateOne = function (_Component) {
-  _inherits(UpdateOne, _Component);
+var UpdateProduct = function (_Component) {
+  _inherits(UpdateProduct, _Component);
 
-  function UpdateOne(props) {
-    _classCallCheck(this, UpdateOne);
+  function UpdateProduct(props) {
+    _classCallCheck(this, UpdateProduct);
 
-    return _possibleConstructorReturn(this, (UpdateOne.__proto__ || Object.getPrototypeOf(UpdateOne)).call(this, props));
+    return _possibleConstructorReturn(this, (UpdateProduct.__proto__ || Object.getPrototypeOf(UpdateProduct)).call(this, props));
   }
 
-  _createClass(UpdateOne, [{
+  _createClass(UpdateProduct, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var data_id = this.props.match.params.id;
-      var data = this.props.getsingle(data_id);
+      var product_id = this.props.match.params.id;
+      var product_data = this.props.getProduct(product_id);
     }
   }, {
-    key: "UpdateDiv",
-    value: function UpdateDiv() {
+    key: "UpdateProductDiv",
+    value: function UpdateProductDiv() {
       var _props = this.props,
           classes = _props.classes,
           handleSubmit = _props.handleSubmit,
           other = _objectWithoutProperties(_props, ["classes", "handleSubmit"]);
 
-      return _react2.default.createElement("div", null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 8 }, _react2.default.createElement("form", { onSubmit: handleSubmit(this.props.updateSingle) }, _react2.default.createElement(_Card2.default, null, _react2.default.createElement(_CardHeader2.default, { color: "primary" }, _react2.default.createElement("h4", { className: classes.cardTitleWhite }, "Edit product")), _react2.default.createElement(_CardBody2.default, null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
+      return _react2.default.createElement("div", null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 8 }, _react2.default.createElement("form", { onSubmit: handleSubmit(this.props.updateProduct) }, _react2.default.createElement(_Card2.default, null, _react2.default.createElement(_CardHeader2.default, { color: "primary" }, _react2.default.createElement("h4", { className: classes.cardTitleWhite }, "Edit product")), _react2.default.createElement(_CardBody2.default, null, _react2.default.createElement(_GridContainer2.default, null, _react2.default.createElement(_GridItem2.default, { xs: 12, sm: 12, md: 12 }, _react2.default.createElement(_core.FormControl, { fullWidth: true }, _react2.default.createElement(_reduxForm.Field, {
         component: _InputField2.default,
         type: "text",
         label: "Title",
@@ -116069,18 +116116,19 @@ var UpdateOne = function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return this.UpdateDiv();
+      return this.UpdateProductDiv();
     }
   }]);
 
-  return UpdateOne;
+  return UpdateProduct;
 }(_react.Component);
 
-UpdateOne = (0, _reduxForm.reduxForm)({
-  form: "UpdateOneForm"
-})(UpdateOne);
+UpdateProduct = (0, _reduxForm.reduxForm)({
+  form: "UpdateProductForm",
+  enableReinitialize: true
+})(UpdateProduct);
 
-exports.default = UpdateOne;
+exports.default = UpdateProduct;
 
 /***/ }),
 /* 1896 */
@@ -116092,11 +116140,10 @@ exports.default = UpdateOne;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.checkboxClick = checkboxClick;
-exports.setsingle = setsingle;
-exports.getsingle = getsingle;
-exports.updateSingle = updateSingle;
-exports.deleteSingle = deleteSingle;
+exports.setProduct = setProduct;
+exports.getProduct = getProduct;
+exports.updateProduct = updateProduct;
+exports.deleteProduct = deleteProduct;
 
 var _reduxForm = __webpack_require__(33);
 
@@ -116104,20 +116151,14 @@ var _Ajax = __webpack_require__(90);
 
 var _Config = __webpack_require__(49);
 
-function checkboxClick(target) {
+function setProduct(data) {
     return {
-        type: target
-    };
-}
-
-function setsingle(data) {
-    return {
-        type: "SET_SINGLE_PRODUCT",
+        type: "SET_PRODUCT",
         payload: data
     };
 }
 
-function getsingle(data_id) {
+function getProduct(data_id) {
     debugger;
     return function (dispatch) {
         _Ajax.Ajax.call({
@@ -116125,14 +116166,14 @@ function getsingle(data_id) {
             url: _Config.BASE_URL + "admin/products/" + data_id + ".json",
             success: function success(result) {
                 if (typeof result.errors == 'undefined') {
-                    dispatch(setsingle(result.product));
+                    dispatch(setProduct(result.product));
                 } else {}
             }
         });
     };
 }
 
-function updateSingle(data) {
+function updateProduct(data) {
     return function (dispatch) {
         data._token = window.Laravel.csrfToken;
         _Ajax.Ajax.call({
@@ -116140,17 +116181,13 @@ function updateSingle(data) {
             data: data,
             url: location.href + ".json",
             success: function success(result) {
-                if (result.is_new) {
-                    location.href = "" + result.data.id;
-                } else {
-                    location.href = "./";
-                }
+                location.href = "" + result.data.id;
             }
         });
     };
 }
 
-function deleteSingle() {
+function deleteProduct() {
     return function (dispatch) {
         var data = {};
         data._token = window.Laravel.csrfToken;

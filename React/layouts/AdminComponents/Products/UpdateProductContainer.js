@@ -3,11 +3,10 @@ import UpdateProduct from "./UpdateProduct";
 
 import { UpdateProductReducer } from "Reducers/Admin/Products/UpdateProductReducer";
 import { 
-		checkboxClick, 
-		getsingle,
-		setsingle,
-		updateSingle,
-		deleteSingle
+		getProduct,
+		setProduct,
+		updateProduct,
+		deleteProduct
 		} from "Actions/Admin/Products/UpdateProductActions";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -15,26 +14,24 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 
 const mapStateToProps = state => {
 	return {
-		Data: state.UpdateCustomer
+                initialValues:state.UpdateProduct.product,
+		Data: state.UpdateProduct
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		checkboxClick: (value) => {
-			dispatch(checkboxClick(value));
+		getProduct: (id) => {
+			dispatch(getProduct(id));
 		},
-		getsingle: (id) => {
-			dispatch(getsingle(id));
+		setProduct: (value) => {
+			dispatch(setProduct(value));
 		},
-		setsingle: (value) => {
-			dispatch(setsingle(value));
+		updateProduct: (value) => {
+			dispatch(updateProduct(value));
 		},
-		updateSingle: (value) => {
-			dispatch(updateSingle(value));
-		},
-		deleteSingle: (id) => {
-			dispatch(deleteSingle(id));
+		deleteProduct: (id) => {
+			dispatch(deleteProduct(id));
 		}
 	};
 };

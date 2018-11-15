@@ -77,7 +77,7 @@ class CreateCustomer extends Component {
     const country_data = this.props.getCountry();
   }
 
-  CreateDiv() {
+  CreateCustomerDiv() {
     const { classes, handleSubmit, ...other } = this.props;
     return (
       <div>
@@ -158,11 +158,11 @@ class CreateCustomer extends Component {
                           color="primary"
                           name="accepts_marketing"
                           value={
-                            this.props.Data.accepts_marketing
+                            this.props.CustomerData.accepts_marketing
                               ? new String("on")
                               : new String("off")
                           }
-                          checked={this.props.Data.accepts_marketing}
+                          checked={this.props.CustomerData.accepts_marketing}
                           onChange={() =>
                             this.props.checkboxClick("ACCEPTS_MARKETING")
                           }
@@ -180,11 +180,11 @@ class CreateCustomer extends Component {
                           color="primary"
                           name="tax_exempt"
                           value={
-                            this.props.Data.tax_exempt
+                            this.props.CustomerData.tax_exempt
                               ? new String("on")
                               : new String("off")
                           }
-                          checked={this.props.Data.tax_exempt}
+                          checked={this.props.CustomerData.tax_exempt}
                           onChange={() =>
                             this.props.checkboxClick("TAX_EXEMPT")
                           }
@@ -325,7 +325,7 @@ class CreateCustomer extends Component {
   }
 
   render() {
-    return this.CreateDiv();
+    return this.CreateCustomerDiv();
   }
 }
 

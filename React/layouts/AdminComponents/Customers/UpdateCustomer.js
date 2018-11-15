@@ -80,7 +80,7 @@ class UpdateCustomer extends Component {
     const country_data = this.props.getCountry();
   }
 
-  UpdateDiv() {
+  UpdateCustomerDiv() {
     const { classes, handleSubmit, ...other } = this.props;
     return (
       <div>
@@ -174,11 +174,11 @@ class UpdateCustomer extends Component {
                           color="primary"
                           name="accepts_marketing"
                           value={
-                            this.props.Data.accepts_marketing
+                            this.props.CustomerData.accepts_marketing
                               ? new String("on")
                               : new String("off")
                           }
-                          checked={this.props.Data.accepts_marketing}
+                          checked={this.props.CustomerData.accepts_marketing}
                           onChange={() =>
                             this.props.checkboxClick("ACCEPTS_MARKETING")
                           }
@@ -196,11 +196,11 @@ class UpdateCustomer extends Component {
                           color="primary"
                           name="tax_exempt"
                           value={
-                            this.props.Data.tax_exempt
+                            this.props.CustomerData.tax_exempt
                               ? new String("on")
                               : new String("off")
                           }
-                          checked={this.props.Data.tax_exempt}
+                          checked={this.props.CustomerData.tax_exempt}
                           onChange={() =>
                             this.props.checkboxClick("TAX_EXEMPT")
                           }
@@ -339,7 +339,7 @@ class UpdateCustomer extends Component {
 
         <Button onClick={this.props.OpenAddressDialog}>Open dialog</Button>
         <Dialog
-          open={this.props.Data.OpenAddressDialog}
+          open={this.props.CustomerData.OpenAddressDialog}
           onClose={this.props.CloseAddressDialog}
         >
           <DialogTitle>Title</DialogTitle>
@@ -362,7 +362,7 @@ class UpdateCustomer extends Component {
   }
 
   render() {
-    return this.UpdateDiv();
+    return this.UpdateCustomerDiv();
   }
 }
 

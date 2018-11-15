@@ -10,7 +10,7 @@ import tableStyle from "assets/jss/material-dashboard-react/components/tableStyl
 
 const mapStateToProps = state => {
 	return {
-		Data: state.GetCustomers
+		CustomersData: state.GetCustomers
 	}; 
 };
 

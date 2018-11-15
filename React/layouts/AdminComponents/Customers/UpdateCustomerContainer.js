@@ -22,7 +22,7 @@ const mapStateToProps = state => {
 	return {
 		Address: state.GetAddress,
 		initialValues:state.UpdateCustomer.customer,
-		Data: state.UpdateCustomer
+		CustomerData: state.UpdateCustomer
 	};
 };
 

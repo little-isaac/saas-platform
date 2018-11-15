@@ -8,7 +8,7 @@ const UpdateProductReducer = (
     action
 ) => {
     switch (action.type) {
-        case "SET_SINGLE_PRODUCT":
+        case "SET_PRODUCT":
             var product = action.payload;
             state = {
                 ...state,

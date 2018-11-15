@@ -2,20 +2,14 @@ import { SubmissionError } from "redux-form";
 import { Ajax } from "layouts/Ajax";
 import { ADMIN_BASE_URL, BASE_URL } from "layouts/static/Config";
 
-export function checkboxClick(target) {
+export function setProduct(data) {
     return {
-        type: target
-    };
-}
-
-export function setsingle(data) {
-    return {
-        type: "SET_SINGLE_PRODUCT",
+        type: "SET_PRODUCT",
         payload: data
     };
 }
 
-export function getsingle(data_id) {
+export function getProduct(data_id) {
     debugger;
     return dispatch => {
         Ajax.call({
@@ -23,17 +17,16 @@ export function getsingle(data_id) {
             url: BASE_URL + "admin/products/" + data_id + ".json",
             success: function (result) {
                 if (typeof result.errors == 'undefined') {
-                    dispatch(setsingle(result.product));
-                }
-                else{
-                    
+                    dispatch(setProduct(result.product));
+                } else {
+
                 }
             }
         });
     };
 }
 
-export function updateSingle(data) {
+export function updateProduct(data) {
     return dispatch => {
         data._token = window.Laravel.csrfToken;
         Ajax.call({
@@ -41,17 +34,13 @@ export function updateSingle(data) {
             data: data,
             url: location.href + ".json",
             success: function (result) {
-                if (result.is_new) {
-                    location.href = "" + result.data.id;
-                } else {
-                    location.href = "./";
-                }
+                location.href = "" + result.data.id;
             }
         });
     };
 }
 
-export function deleteSingle() {
+export function deleteProduct() {
     return dispatch => {
         var data = {};
         data._token = window.Laravel.csrfToken;

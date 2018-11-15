@@ -71,6 +71,9 @@ const dashboardStyle = {
       fontWeight: "400",
       lineHeight: "1"
     }
+  },
+  marginTop20: {
+    marginTop: "20px"
   }
 };
 

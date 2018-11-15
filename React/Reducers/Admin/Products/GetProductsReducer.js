@@ -12,7 +12,7 @@ const GetProductsReducer = (
 				TableData: action.payload
 			};
 			break;
-		case "REMOVE_SINGLE_PRODUCT":
+		case "REMOVE_PRODUCT":
 			var all_data = state.TableData;
 			all_data.data.splice(action.index, 1);
 			state = {

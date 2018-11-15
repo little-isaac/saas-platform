@@ -2,33 +2,33 @@ import { SubmissionError } from "redux-form";
 import { Ajax } from "layouts/Ajax";
 import { ADMIN_BASE_URL, BASE_URL } from "layouts/static/Config";
 
-export function setAll(data) {
+export function setProducts(data) {
 	return {
 		type: "SET_ALL_PRODUCTS",
 		payload: data
 	};
 }
 
-export function getAll() {
+export function getProducts() {
 	return dispatch => {
 		Ajax.call({
 			method: "GET",
 			url: BASE_URL + "admin/products.json",
 			success: function(result) {
-				dispatch(setAll(result));
+				dispatch(setProducts(result));
 			}
 		});
 	};
 }
 
-export function removeSingle(index) {
+export function removeProduct(index) {
 	return {
-		type: "REMOVE_SINGLE_PRODUCT",
+		type: "REMOVE_PRODUCT",
 		index: index
 	};
 }
 
-export function deleteSingle(data_id, index) {
+export function deleteProduct(data_id, index) {
 	return dispatch => {
 		var values = {};
 		values._token = window.Laravel.csrfToken;
@@ -38,7 +38,7 @@ export function deleteSingle(data_id, index) {
 			url: BASE_URL + "admin/products/" + data_id + ".json",
 			success: function(result) {
 				if (result.status) {
-					dispatch(removeSingle(index));
+					dispatch(removeProduct(index));
 				}
 			}
 		});

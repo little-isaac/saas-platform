@@ -2,22 +2,22 @@ const CreateProductReducer = (
     state = {
         products: "",
         product: "",
-        accepts_marketing: false,
-        tax_exempt: false
+        is_taxable: false,
+        is_shipping_require: false
     },
     action
 ) => {
     switch (action.type) {
-        case "ACCEPTS_MARKETING":
+        case "IS_TAXABLE":
             state = {
                 ...state,
-                accepts_marketing: !state.accepts_marketing
+                is_taxable: !state.is_taxable
             };
             break;
-        case "TAX_EXEMPT":
+        case "IS_SHIPPING_REQUIRE":
             state = {
                 ...state,
-                tax_exempt: !state.tax_exempt
+                is_shipping_require: !state.is_shipping_require
             };
             break;
     }
