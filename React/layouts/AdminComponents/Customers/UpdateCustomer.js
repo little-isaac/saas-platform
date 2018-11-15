@@ -75,8 +75,9 @@ class UpdateCustomer extends Component {
   }
 
   componentDidMount() {
-    var data_id = this.props.match.params.id;
-    const data = this.props.getSingle(data_id);
+    var customer_id = this.props.match.params.id;
+    const customer_data = this.props.getCustomer(customer_id);
+    const country_data = this.props.getCountry();
   }
 
   UpdateDiv() {
@@ -85,7 +86,7 @@ class UpdateCustomer extends Component {
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={8}>
-            <form onSubmit={handleSubmit(this.props.updateSingle)}>
+            <form onSubmit={handleSubmit(this.props.updateCustomer)}>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={4}>
                   <Button type="button">Cancel</Button>
@@ -99,7 +100,7 @@ class UpdateCustomer extends Component {
                   <Button
                     type="button"
                     color="danger"
-                    onClick={this.props.deleteSingle}
+                    onClick={this.props.deleteCustomer}
                   >
                     Delete
                   </Button>
@@ -157,7 +158,7 @@ class UpdateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="Phone Number"
-                          name="phone_number"
+                          name="phone"
                           type="text"
                         />
                       </FormControl>
@@ -218,7 +219,7 @@ class UpdateCustomer extends Component {
                           component={InputField}
                           type="text"
                           label="First Name"
-                          name="address_first_name"
+                          name="default_address.first_name"
                         />
                       </FormControl>
                     </GridItem>
@@ -237,14 +238,13 @@ class UpdateCustomer extends Component {
                       </FormControl>
                     </GridItem>
                   </GridContainer>
-
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
                       <FormControl fullWidth>
                         <Field
                           component={InputField}
                           label="Company"
-                          name="company"
+                          name="default_address.company"
                           type="text"
                         />
                       </FormControl>
@@ -256,7 +256,7 @@ class UpdateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="Address"
-                          name="address_1"
+                          name="default_address.address1"
                           type="text"
                         />
                       </FormControl>
@@ -268,7 +268,7 @@ class UpdateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="Apartment, suite, etc."
-                          name="address_2"
+                          name="default_address.address2"
                           type="text"
                         />
                       </FormControl>
@@ -280,7 +280,7 @@ class UpdateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="City"
-                          name="city"
+                          name="default_address.city"
                           type="text"
                         />
                       </FormControl>
@@ -292,8 +292,9 @@ class UpdateCustomer extends Component {
                         <Field
                           component={SelectField}
                           label="Country"
-                          name="country"
-                          displayOption={["India", "Canada"]}
+                          name="default_address.country"
+                          displayOptions={this.props.Address.Countries}
+                          onChange={(event) => {this.props.getState(event.target.value)}}
                         />
                       </FormControl>
                     </GridItem>
@@ -302,8 +303,8 @@ class UpdateCustomer extends Component {
                         <Field
                           component={SelectField}
                           label="State"
-                          name="state"
-                          displayOption={["Gujarat", "Mumbai"]}
+                          name="default_address.province"
+                          displayOptions={this.props.Address.States}
                         />
                       </FormControl>
                     </GridItem>
@@ -313,7 +314,7 @@ class UpdateCustomer extends Component {
                           component={InputField}
                           type="text"
                           label="Zip code"
-                          name="zip_code"
+                          name="default_address.zip"
                         />
                       </FormControl>
                     </GridItem>
@@ -324,7 +325,7 @@ class UpdateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="Phone"
-                          name="address_phone"
+                          name="default_address.phone"
                           type="text"
                         />
                       </FormControl>
@@ -335,6 +336,27 @@ class UpdateCustomer extends Component {
             </form>
           </GridItem>
         </GridContainer>
+
+        <Button onClick={this.props.OpenAddressDialog}>Open dialog</Button>
+        <Dialog
+          open={this.props.Data.OpenAddressDialog}
+          onClose={this.props.CloseAddressDialog}
+        >
+          <DialogTitle>Title</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Content
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.props.OpenAddressDialog} color="primary">
+              Disagree
+            </Button>
+            <Button onClick={this.props.CloseAddressDialog} color="primary" autoFocus>
+              Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }

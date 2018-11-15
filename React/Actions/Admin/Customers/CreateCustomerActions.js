@@ -8,7 +8,7 @@ export function checkboxClick(target) {
     };
 }
 
-export function createSingle(data) {
+export function createCustomer(data) {
     return dispatch => {
         data._token = window.Laravel.csrfToken;
 debugger;

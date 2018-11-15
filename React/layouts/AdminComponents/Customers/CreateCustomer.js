@@ -74,7 +74,7 @@ class CreateCustomer extends Component {
   }
 
   componentDidMount() {
-    const data = this.props.getCountry();
+    const country_data = this.props.getCountry();
   }
 
   CreateDiv() {
@@ -83,7 +83,7 @@ class CreateCustomer extends Component {
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={8}>
-            <form onSubmit={handleSubmit(this.props.createSingle)}>
+            <form onSubmit={handleSubmit(this.props.createCustomer)}>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={6}>
                   <Button type="button" color="danger">
@@ -142,7 +142,7 @@ class CreateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="Phone Number"
-                          name="phone_number"
+                          name="phone"
                           type="text"
                         />
                       </FormControl>
@@ -203,12 +203,11 @@ class CreateCustomer extends Component {
                           component={InputField}
                           type="text"
                           label="First Name"
-                          name="address_first_name"
+                          name="default_address.first_name"
                         />
                       </FormControl>
                     </GridItem>
                     <GridItem
-                      className={classes.marginBottom20}
                       xs={12}
                       sm={12}
                       md={6}
@@ -218,19 +217,18 @@ class CreateCustomer extends Component {
                           component={InputField}
                           type="text"
                           label="Last Name"
-                          name="address_last_name"
+                          name="default_address.last_name"
                         />
                       </FormControl>
                     </GridItem>
                   </GridContainer>
-
                   <GridContainer>
                     <GridItem xs={12} sm={12} md={12}>
                       <FormControl fullWidth>
                         <Field
                           component={InputField}
                           label="Company"
-                          name="company"
+                          name="default_address.company"
                           type="text"
                         />
                       </FormControl>
@@ -242,7 +240,7 @@ class CreateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="Address"
-                          name="address_1"
+                          name="default_address.address1"
                           type="text"
                         />
                       </FormControl>
@@ -254,7 +252,7 @@ class CreateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="Apartment, suite, etc."
-                          name="address_2"
+                          name="default_address.address2"
                           type="text"
                         />
                       </FormControl>
@@ -266,7 +264,7 @@ class CreateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="City"
-                          name="city"
+                          name="default_address.city"
                           type="text"
                         />
                       </FormControl>
@@ -278,7 +276,7 @@ class CreateCustomer extends Component {
                         <Field
                           component={SelectField}
                           label="Country"
-                          name="country"
+                          name="default_address.country"
                           displayOptions={this.props.Address.Countries}
                           onChange={(event) => {this.props.getState(event.target.value)}}
                         />
@@ -289,7 +287,7 @@ class CreateCustomer extends Component {
                         <Field
                           component={SelectField}
                           label="State"
-                          name="state"
+                          name="default_address.state"
                           displayOptions={this.props.Address.States}
                         />
                       </FormControl>
@@ -300,7 +298,7 @@ class CreateCustomer extends Component {
                           component={InputField}
                           type="text"
                           label="Zip code"
-                          name="zip"
+                          name="default_address.zip"
                         />
                       </FormControl>
                     </GridItem>
@@ -311,7 +309,7 @@ class CreateCustomer extends Component {
                         <Field
                           component={InputField}
                           label="Phone"
-                          name="address_phone"
+                          name="default_address.phone"
                           type="text"
                         />
                       </FormControl>

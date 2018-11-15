@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import Customers from "./Customers";
 
 import { GetCustomersReducer } from "Reducers/Admin/Customers/GetCustomersReducer";
-import { getAll, deleteSingle } from "Actions/Admin/Customers/GetCustomersActions";
+import { getCustomers, deleteCustomer } from "Actions/Admin/Customers/GetCustomersActions";
 
 import { withStyles } from "@material-ui/core/styles";
 
@@ -16,11 +16,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		getAll: () => {
-			dispatch(getAll());
+		getCustomers: () => {
+			dispatch(getCustomers());
 		},
-		deleteSingle: (data_id,index) => {
-			dispatch(deleteSingle(data_id,index));
+		deleteCustomer: (data_id,index) => {
+			dispatch(deleteCustomer(data_id,index));
 		}
 	};
 };

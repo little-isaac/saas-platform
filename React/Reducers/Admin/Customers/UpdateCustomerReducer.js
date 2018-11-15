@@ -4,6 +4,7 @@ const UpdateCustomerReducer = (
         customer: {},
         accepts_marketing: false,
         tax_exempt: false,
+        OpenAddressDialog: false,
         is_shrink:{}
     },
     action
@@ -21,7 +22,14 @@ const UpdateCustomerReducer = (
                 tax_exempt: !state.tax_exempt
             };
             break; 
-        case "SET_SINGLE_CUSTOMER":
+        case "OPEN_ADDRESS_DIALOG":
+        case "CLOSE_ADDRESS_DIALOG":
+            state = {
+                ...state,
+                OpenAddressDialog: !state.OpenAddressDialog
+            };
+            break; 
+        case "SET_CUSTOMER":
             var customer = action.payload;
             state = {
                 ...state,

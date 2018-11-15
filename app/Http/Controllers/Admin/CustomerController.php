@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Auth;
-use App\Model\Store\Customer;
 use App\Model\Store\Address;
+use App\Model\Store\Customer;
+use Auth;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller {
 
@@ -16,7 +16,7 @@ class CustomerController extends Controller {
         SetDatabase($user_id);
 
         $conditions = [
-            ['id', '=', $id]
+            ['id', '=', $id],
         ];
 
         $first_name = $request->has('first_name') ? $request->first_name : null;
@@ -55,7 +55,7 @@ class CustomerController extends Controller {
         $this->add_default_address($customer_id, $request);
 
         return [
-            'customer' => $customer
+            'customer' => $customer,
         ];
     }
 
@@ -63,7 +63,7 @@ class CustomerController extends Controller {
 
         $conditions = [
             ['customer_id', '=', $customer_id],
-            ['default', '=', true]
+            ['default', '=', true],
         ];
 
         $address = Address::where($conditions)->first();
@@ -72,37 +72,42 @@ class CustomerController extends Controller {
             $address = new Address();
         }
 
-        $address_first_name = $request->has('default_address.first_name') ? $request->first_name : null;
-        $address_last_name = $request->has('last_name') ? $request->last_name : null;
-        $company = $request->has('company') ? $request->company : null;
-        $address_1 = $request->has('address_1') ? $request->address_1 : null;
-        $address_2 = $request->has('address_2') ? $request->address_2 : null;
-        $city = $request->has('city') ? $request->city : null;
-        $province = $request->has('province') ? $request->province : null;
-        $country = $request->has('country') ? $request->country : null;
-        $zip = $request->has('zip') ? $request->zip : null;
-        $address_phone = $request->has('address_phone') ? $request->address_phone : null;
-        $name = $address_first_name . ' ' . $address_last_name;
-        $province_code = $request->has('province_code') ? $request->province_code : null;
-        $country_code = $request->has('country_code') ? $request->country_code : null;
-        $country_name = $request->has('country_name') ? $request->country_name : null;
-        $is_default_address = true;
+        $default_address = $request->has('default_address') ? $request->default_address : null;
+        if ($default_address) {
+            $default_address_first_name = (isset($default_address['first_name'])) ? $default_address['first_name'] : null;
+            $default_address_last_name = (isset($default_address['last_name'])) ? $default_address['last_name'] : null;
+            $default_address_company = (isset($default_address['company'])) ? $default_address['company'] : null;
+            $default_address1 = (isset($default_address['address1'])) ? $default_address['address1'] : null;
+            $default_address2 = (isset($default_address['address2'])) ? $default_address['address2'] : null;
+            $default_address_city = (isset($default_address['city'])) ? $default_address['city'] : null;
+            $default_address_province = (isset($default_address['province'])) ? $default_address['province'] : null;
+            $default_address_country = (isset($default_address['country'])) ? $default_address['country'] : null;
+            $default_address_zip = (isset($default_address['zip'])) ? $default_address['zip'] : null;
+            $default_address_phone = (isset($default_address['phone'])) ? $default_address['phone'] : null;
+            $default_address_name = $default_address_first_name . ' ' . $default_address_last_name;
+            $default_address_province_code = (isset($default_address['province_code'])) ? $default_address['province_code'] : null;
+            $default_address_country_code = (isset($default_address['country_code'])) ? $default_address['country_code'] : null;
+            $default_address_country_name = (isset($default_address['country_name'])) ? $default_address['country_name'] : null;
+            $is_default_address = true;
+        }
+
+
 
         $address->customer_id = $customer_id;
-        $address->first_name = $address_first_name;
-        $address->last_name = $address_last_name;
-        $address->company = $company;
-        $address->address1 = $address_1;
-        $address->address2 = $address_2;
-        $address->city = $city;
-        $address->province = $province;
-        $address->country = $country;
-        $address->zip = $zip;
-        $address->phone = $address_phone;
-        $address->name = $name;
-        $address->province_code = $province_code;
-        $address->country_code = $country_code;
-        $address->country_name = $country_name;
+        $address->first_name = $default_address_first_name;
+        $address->last_name = $default_address_last_name;
+        $address->company = $default_address_company;
+        $address->address1 = $default_address1;
+        $address->address2 = $default_address2;
+        $address->city = $default_address_city;
+        $address->province = $default_address_province;
+        $address->country = $default_address_country;
+        $address->zip = $default_address_zip;
+        $address->phone = $default_address_phone;
+        $address->name = $default_address_name;
+        $address->province_code = $default_address_province_code;
+        $address->country_code = $default_address_country_code;
+        $address->country_name = $default_address_country_name;
         $address->default = $is_default_address;
         $address->save();
     }
@@ -122,7 +127,7 @@ class CustomerController extends Controller {
         $user_id = Auth::guard('admin')->user()->id;
         SetDatabase($user_id);
 
-        $customer = Customer::with(['addresses','default_address'])->where('id', $id)->first();
+        $customer = Customer::with(['addresses', 'default_address'])->where('id', $id)->first();
 
         if ($customer) {
             return [
@@ -130,7 +135,7 @@ class CustomerController extends Controller {
             ];
         }
         return [
-            'errors' => 'Not Found'
+            'errors' => 'Not Found',
         ];
     }
 
@@ -141,11 +146,11 @@ class CustomerController extends Controller {
         $customer = Customer::find($customer_id);
         if ($customer->delete()) {
             return [
-                'status' => true
+                'status' => true,
             ];
         } else {
             return [
-                'status' => false
+                'status' => false,
             ];
         }
     }

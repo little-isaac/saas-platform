@@ -8,21 +8,32 @@ export function checkboxClick(target) {
     };
 }
 
-export function setSingle(data) {
+export function OpenAddressDialog() {
     return {
-        type: "SET_SINGLE_CUSTOMER",
+        type: "OPEN_ADDRESS_DIALOG",
+    };
+}
+
+export function CloseAddressDialog() {
+    return {
+        type: "CLOSE_ADDRESS_DIALOG",
+    };
+}
+export function setCustomer(data) {
+    return {
+        type: "SET_CUSTOMER",
         payload: data
     };
 }
 
-export function getSingle(data_id) {
+export function getCustomer(data_id) {
     return dispatch => {
         Ajax.call({
             method: "GET",
             url: BASE_URL + "admin/customers/" + data_id + ".json",
             success: function (result) {
                 if (typeof result.errors == 'undefined') {
-                    dispatch(setSingle(result.customer));
+                    dispatch(setCustomer(result.customer));
                 }
                 else{
                     
@@ -32,7 +43,8 @@ export function getSingle(data_id) {
     };
 }
 
-export function updateSingle(data) {
+export function updateCustomer(data) {
+    debugger;
     return dispatch => {
         data._token = window.Laravel.csrfToken;
         Ajax.call({
@@ -50,7 +62,7 @@ export function updateSingle(data) {
     };
 }
 
-export function deleteSingle() {
+export function deleteCustomer() {
     return dispatch => {
         var data = {};
         data._token = window.Laravel.csrfToken;

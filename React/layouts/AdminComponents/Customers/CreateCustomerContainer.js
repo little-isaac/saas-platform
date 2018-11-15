@@ -5,19 +5,16 @@ import { GetAddressReducer } from "Reducers/Address/GetAddressReducer";
 import { CreateCustomerReducer } from "Reducers/Admin/Customers/CreateCustomerReducer";
 import {
 	checkboxClick,
-	createSingle
+	createCustomer
 } from "Actions/Admin/Customers/CreateCustomerActions";
 
-import {
-	getCountry,
-        getState
-} from "Actions/Address/GetAddressActions";
+import { getCountry, getState } from "Actions/Address/GetAddressActions";
 
 import { withStyles } from "@material-ui/core/styles";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
 const mapStateToProps = state => {
-    console.log(state.GetAddress);
+	console.log(state.GetAddress);
 	return {
 		Address: state.GetAddress,
 		Data: state.CreateCustomer
@@ -29,13 +26,13 @@ const mapDispatchToProps = dispatch => {
 		checkboxClick: value => {
 			dispatch(checkboxClick(value));
 		},
-		createSingle: values => {
-			dispatch(createSingle(values));
+		createCustomer: values => {
+			dispatch(createCustomer(values));
 		},
 		getCountry: () => {
 			dispatch(getCountry());
 		},
-		getState: (country_id) => {
+		getState: country_id => {
 			dispatch(getState(country_id));
 		}
 	};

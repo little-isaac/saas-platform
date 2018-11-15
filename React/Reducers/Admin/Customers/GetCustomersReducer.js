@@ -13,7 +13,7 @@ const GetCustomersReducer = (
 				TableData: action.payload
 			};
 			break;
-		case "REMOVE_SINGLE_CUSTOMER":
+		case "REMOVE_CUSTOMER":
 			var all_data = state.TableData;
 			all_data.data.splice(action.index, 1);
 			state = {

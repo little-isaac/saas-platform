@@ -1,20 +1,26 @@
 import { connect } from "react-redux";
 import UpdateCustomer from "./UpdateCustomer";
 
+import { GetAddressReducer } from "Reducers/Address/GetAddressReducer";
 import { UpdateCustomerReducer } from "Reducers/Admin/Customers/UpdateCustomerReducer";
 import { 
 		checkboxClick, 
-		getSingle,
-		setSingle,
-		updateSingle,
-		deleteSingle
+		getCustomer,
+		setCustomer,
+		updateCustomer,
+		deleteCustomer,
+		OpenAddressDialog,
+		CloseAddressDialog
 		} from "Actions/Admin/Customers/UpdateCustomerActions";
+
+import { getCountry, getState } from "Actions/Address/GetAddressActions";
 
 import { withStyles } from "@material-ui/core/styles";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
 const mapStateToProps = state => {
 	return {
+		Address: state.GetAddress,
 		initialValues:state.UpdateCustomer.customer,
 		Data: state.UpdateCustomer
 	};
@@ -25,17 +31,29 @@ const mapDispatchToProps = dispatch => {
 		checkboxClick: (value) => {
 			dispatch(checkboxClick(value));
 		},
-		getSingle: (id) => {
-			dispatch(getSingle(id));
+		getCustomer: (id) => {
+			dispatch(getCustomer(id));
 		},
-		setSingle: (value) => {
-			dispatch(setSingle(value));
+		setCustomer: (value) => {
+			dispatch(setCustomer(value));
 		},
-		updateSingle: (value) => {
-			dispatch(updateSingle(value));
+		updateCustomer: (value) => {
+			dispatch(updateCustomer(value));
 		},
-		deleteSingle: (id) => {
-			dispatch(deleteSingle(id));
+		deleteCustomer: (id) => {
+			dispatch(deleteCustomer(id));
+		},
+		getCountry: () => {
+			dispatch(getCountry());
+		},
+		getState: country_id => {
+			dispatch(getState(country_id));
+		},
+		OpenAddressDialog: () => {
+			dispatch(OpenAddressDialog());
+		},
+		CloseAddressDialog: () => {
+			dispatch(CloseAddressDialog());
 		}
 	};
 };

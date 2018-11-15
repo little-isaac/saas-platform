@@ -71,7 +71,7 @@ class Customers extends React.Component {
   }
 
   componentDidMount() {
-    const data = this.props.getAll(); 
+    const data = this.props.getCustomers(); 
   }
 
   render() {
@@ -103,7 +103,7 @@ class Customers extends React.Component {
                           to={"customers/" + customer["id"]}
                           label="Edit"
                         />
-                        <Button color="danger" onClick={() => this.props.deleteSingle(customer["id"],key)}>Delete</Button>
+                        <Button color="danger" onClick={() => this.props.deleteCustomer(customer["id"],key)}>Delete</Button>
                       </TableCell>
                     </TableRow>
                   );

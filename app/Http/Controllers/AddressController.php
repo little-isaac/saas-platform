@@ -51,11 +51,11 @@ class AddressController extends Controller {
 
     function getState(Request $request, $country_id) {
 
-        $country = Country::find($country_id);
+        $states = State::where('country_id', $country_id)->get();
 
-        if ($country) {
+        if ($states) {
             return [
-                'states' => $country->states
+                'states' => $states
             ];
         }
         return [
