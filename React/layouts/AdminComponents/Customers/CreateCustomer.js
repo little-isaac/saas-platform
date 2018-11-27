@@ -287,7 +287,7 @@ class CreateCustomer extends Component {
                         <Field
                           component={SelectField}
                           label="State"
-                          name="default_address.state"
+                          name="default_address.province"
                           displayOptions={this.props.Address.States}
                         />
                       </FormControl>

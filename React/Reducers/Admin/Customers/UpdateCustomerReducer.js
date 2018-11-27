@@ -23,7 +23,6 @@ const UpdateCustomerReducer = (
             };
             break; 
         case "OPEN_ADDRESS_DIALOG":
-        case "CLOSE_ADDRESS_DIALOG":
             state = {
                 ...state,
                 OpenAddressDialog: !state.OpenAddressDialog

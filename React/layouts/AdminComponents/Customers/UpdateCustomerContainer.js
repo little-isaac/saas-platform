@@ -9,8 +9,7 @@ import {
 		setCustomer,
 		updateCustomer,
 		deleteCustomer,
-		OpenAddressDialog,
-		CloseAddressDialog
+		OpenDialog
 		} from "Actions/Admin/Customers/UpdateCustomerActions";
 
 import { getCountry, getState } from "Actions/Address/GetAddressActions";
@@ -49,11 +48,8 @@ const mapDispatchToProps = dispatch => {
 		getState: country_id => {
 			dispatch(getState(country_id));
 		},
-		OpenAddressDialog: () => {
-			dispatch(OpenAddressDialog());
-		},
-		CloseAddressDialog: () => {
-			dispatch(CloseAddressDialog());
+		OpenDialog: (value) => {
+			dispatch(OpenDialog(value));
 		}
 	};
 };

@@ -337,10 +337,10 @@ class UpdateCustomer extends Component {
           </GridItem>
         </GridContainer>
 
-        <Button onClick={this.props.OpenAddressDialog}>Open dialog</Button>
+        <Button onClick={() =>this.props.OpenDialog("OPEN_ADDRESS_DIALOG")}>Open dialog</Button>
         <Dialog
           open={this.props.CustomerData.OpenAddressDialog}
-          onClose={this.props.CloseAddressDialog}
+          onClose={() =>this.props.OpenDialog("OPEN_ADDRESS_DIALOG")}
         >
           <DialogTitle>Title</DialogTitle>
           <DialogContent>
@@ -349,10 +349,10 @@ class UpdateCustomer extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.props.OpenAddressDialog} color="primary">
+            <Button onClick={() =>this.props.OpenDialog("OPEN_ADDRESS_DIALOG")} color="primary">
               Disagree
             </Button>
-            <Button onClick={this.props.CloseAddressDialog} color="primary" autoFocus>
+            <Button onClick={() =>this.props.OpenDialog("OPEN_ADDRESS_DIALOG")} color="primary" autoFocus>
               Agree
             </Button>
           </DialogActions>

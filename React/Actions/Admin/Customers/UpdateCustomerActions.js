@@ -8,17 +8,12 @@ export function checkboxClick(target) {
     };
 }
 
-export function OpenAddressDialog() {
+export function OpenDialog(type) {
     return {
-        type: "OPEN_ADDRESS_DIALOG",
+        type: type,
     };
 }
 
-export function CloseAddressDialog() {
-    return {
-        type: "CLOSE_ADDRESS_DIALOG",
-    };
-}
 export function setCustomer(data) {
     return {
         type: "SET_CUSTOMER",

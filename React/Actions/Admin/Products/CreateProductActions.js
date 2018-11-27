@@ -8,7 +8,20 @@ export function checkboxClick(target) {
     };
 }
 
+export function AddOption() {
+    return {
+        type: "ADD_OPTION",
+    };
+}
+
+export function OpenDialog(target) {
+    return {
+        type: target,
+    };
+}
+
 export function createProduct(data) {
+    debugger;
     return dispatch => {
         data._token = window.Laravel.csrfToken;
 
